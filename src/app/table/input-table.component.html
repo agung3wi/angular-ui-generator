@@ -1,0 +1,125 @@
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Detail Table</h3>
+        <div class="box-tools pull-right">
+            <button (click)="save()" class="btn btn-primary">
+            Save
+        </button>
+        </div>
+        <!-- /.box-tools -->
+    </div>
+    <div class="box-body">
+        <form class="form-horizontal">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Table Name</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="table_name" [(ngModel)]="input.table_name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Default Module</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="module_name" [(ngModel)]="input.module_name" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Primary Key</label>
+                        <div class="col-sm-10">
+                            {{ input.primary_key }}
+                            <button type="button" class="btn btn-primary" (click)="setPrimaryKey()">Set Primary Key</button> {{ selectedItems }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">List Column</h3>
+        <div class="box-tools pull-right">
+            <button (click)="addColumn()" class="btn btn-primary">
+                Add Column
+            </button>
+        </div>
+        <!-- /.box-tools -->
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <th>Action</th>
+                            <th>Column Name</th>
+                            <th>Type</th>
+                            <th>Length</th>
+                            <th>Default Value</th>
+                            <th>AI</th>
+                            <th>Index</th>
+                            <th>Unique</th>
+                        </tr>
+                        <tr *ngFor="let item of input.columns; let i = index">
+                            <td><button type="button" class="btn btn-danger btn-xs" (click)="removeColumn(i)">Delete</button></td>
+                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.column_name" /></td>
+                            <td>
+                                <ng-select [items]="constant.column_type_list" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.type">
+                                </ng-select>
+                            </td>
+                            <td><input type="number" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.size" /></td>
+                            <td><input type="number" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.default" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.ai" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.index" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.unique" /></td>
+                        </tr>
+                        <tr *ngIf="input.columns.length == 0">
+                            <td colspan="100">Column not found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Custom Index</h3>
+        <div class="box-tools pull-right">
+            <button (click)="addIndex()" class="btn btn-primary">Add Index</button>
+        </div>
+        <!-- /.box-tools -->
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <th>Action</th>
+                            <th>Index Name</th>
+                            <th>Column Index</th>
+                            <th>Index</th>
+                            <th>Unique</th>
+                        </tr>
+                        <tr *ngFor="let item of input.indexes; let i = index">
+                            <td><button type="button" class="btn btn-danger btn-xs" (click)="removeIdex(i)">Delete</button></td>
+                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.index_name" /></td>
+                            <td>{{ item.columns }}</td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.index" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.unique" /></td>
+                        </tr>
+                        <tr *ngIf="input.indexes.length == 0">
+                            <td colspan="100">Index not found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

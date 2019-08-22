@@ -1,0 +1,39 @@
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Daftar Table</h3>
+        <div class="box-tools pull-right">
+            <a [routerLink]="['/add-table']" class="btn btn-primary">
+        Add Table
+      </a>
+        </div>
+        <!-- /.box-tools -->
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <th>Aksi</th>
+                            <th>Table Name</th>
+                            <th>Primary Key</th>
+                            <th>Default Modul</th>
+                        </tr>
+                        <tr *ngFor="let item of table_list | paginate: { itemsPerPage: filter.limit, currentPage: filter.page }">
+                            <td><button class="btn btn-danger" (click)="remove(item.table_name)">Hapus</button></td>
+                            <td>{{ item.table_name }}</td>
+                            <td>{{ item.primary_key }}</td>
+                            <td>{{ item.module_name }}</td>
+                        </tr>
+                        <tr *ngIf="table_list.length == 0">
+                            <td colspan="100">Tidak ada data</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <pagination [(ngModel)]="filter.page" [rotate]="rotate" [maxSize]="5" [boundaryLinks]="true" [totalItems]="table_list.length" [itemsPerPage]="filter.limit"></pagination>
+            </div>
+        </div>
+    </div>
+</div>

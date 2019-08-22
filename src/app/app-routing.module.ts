@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { TableComponent } from './table/table.component';
 import { AddTableComponent } from './table/add-table.component';
+import { AddModuleComponent } from './module/add-module.component';
+import { ModuleComponent } from './module/module.component';
 
 const routes: Routes = [
   {
@@ -114,6 +116,18 @@ const routes: Routes = [
         component: AddTableComponent,
         data: {
           title: 'Add Table',
+        }
+      }, {
+        path: 'module',
+        component: ModuleComponent,
+        data: {
+          title: 'List Module',
+        }
+      }, {
+        path: 'add-module',
+        component: AddModuleComponent,
+        data: {
+          title: 'Add Module',
         }
       }
     ]

@@ -25,6 +25,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { LookupColumn } from './table/lookup-column.component';
+import { ModuleComponent } from './module/module.component';
+import { AddModuleComponent } from './module/add-module.component';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { LookupColumn } from './table/lookup-column.component';
     HomeComponent,
     TableComponent,
     AddTableComponent,
-    LookupColumn
+    LookupColumn,
+    ModuleComponent,
+    AddModuleComponent
   ],
   entryComponents: [
     LookupColumn

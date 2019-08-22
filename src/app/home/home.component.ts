@@ -18,7 +18,6 @@ export class HomeComponent implements AfterViewInit {
    * @method ngAfterViewInit
    */
   ngAfterViewInit() {
-    this.doDatabaseStuff();
     Prism.highlightAll();
   }
 

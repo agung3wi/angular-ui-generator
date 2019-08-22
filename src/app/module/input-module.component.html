@@ -1,0 +1,137 @@
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Detail Module</h3>
+        <div class="box-tools pull-right">
+            <button (click)="save()" class="btn btn-primary">
+            Save
+        </button>
+        </div>
+        <!-- /.box-tools -->
+    </div>
+    <div class="box-body">
+        <form class="form-horizontal">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Table</label>
+                        <div class="col-sm-10">
+                            <ng-select bindLabel="table_name" (change)="changeTable()" bindValue="table_name" [items]="table_list" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.table_name">
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Module Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="module_name" [(ngModel)]="input.module_name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">List Field</h3>
+        <div class="box-tools pull-right">
+            <button (click)="addField()" class="btn btn-primary">
+                Add Custom Field
+            </button>
+        </div>
+        <!-- /.box-tools -->
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <th>Action</th>
+                            <th>Field Name</th>
+                            <th>Display Name</th>
+                            <th>Input Type</th>
+                            <th>Validation Add</th>
+                            <th>Validation Edit</th>
+                            <th>Default Value</th>
+                            <th>Sortable</th>
+                        </tr>
+                        <tr *ngFor="let item of input.fields; let i = index">
+                            <td><button *ngIf="item.custom !== false" type="button" class="btn btn-danger btn-xs" (click)="removeField(i)">Delete</button></td>
+                            <td>{{ item.field_name }}</td>
+                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.display_name" /></td>
+                            <td>
+                                <ng-select [items]="constant.field_list" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.type">
+                                </ng-select>
+                            </td>
+                            <td>
+                                <ng-multiselect-dropdown [placeholder]="'Select Validation'" [data]="constant.validation_list" [(ngModel)]="item.valid_add" [settings]="dropdownSettings">
+                                </ng-multiselect-dropdown>
+                            </td>
+                            <td>
+                                <ng-multiselect-dropdown [placeholder]="'Select Validation'" [data]="constant.validation_list" [(ngModel)]="item.valid_edit" [settings]="dropdownSettings">
+                                </ng-multiselect-dropdown>
+                            </td>
+                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.default" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.sortable" /></td>
+                        </tr>
+                        <tr *ngIf="input.fields.length == 0">
+                            <td colspan="100">Column not found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">List Filter</h3>
+        <div class="box-tools pull-right">
+            <button (click)="addFilter()" class="btn btn-primary">Add Filter</button>
+        </div>
+        <!-- /.box-tools -->
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <th>Action</th>
+                            <th>Field Name</th>
+                            <th>Display Name</th>
+                            <th>Input Type</th>
+                            <th>Field Query List</th>
+                            <th>Logical</th>
+                        </tr>
+                        <tr *ngFor="let item of input.filters; let i = index">
+                            <td><button *ngIf="item.custom !== false" type="button" class="btn btn-danger btn-xs" (click)="removeField(i)">Delete</button></td>
+                            <td>
+                                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.field_name" />
+                            </td>
+                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.display_name" /></td>
+                            <td>
+                                <ng-select [items]="constant.field_list" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.type">
+                                </ng-select>
+                            </td>
+                            <td>
+                                <ng-select [multiple]="true" [(ngModel)]="item.field_query">
+                                    <ng-option *ngFor="let field of input.fields" [value]="field.field_name">{{field.field_name}}</ng-option>
+                                </ng-select>
+                            </td>
+                            <td>
+                                <ng-select [items]="constant.logical_list" bindLabel="key" bindValue="key" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.logical">
+                                </ng-select>
+                            </td>
+                        </tr>
+                        <tr *ngIf="input.fields.length == 0">
+                            <td colspan="100">Field not found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

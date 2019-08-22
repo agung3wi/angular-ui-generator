@@ -1,9 +1,9 @@
 <div class="box">
     <div class="box-header with-border">
-        <h3 class="box-title">List Table</h3>
+        <h3 class="box-title">List Module</h3>
         <div class="box-tools pull-right">
-            <a [routerLink]="['/add-table']" class="btn btn-primary">
-        Add Table
+            <a [routerLink]="['/add-module']" class="btn btn-primary">
+        Add Module
       </a>
         </div>
         <!-- /.box-tools -->
@@ -15,24 +15,24 @@
                     <tbody>
                         <tr>
                             <th>Aksi</th>
-                            <th>Table Name</th>
+                            <th>Module Name</th>
                             <th>Primary Key</th>
                             <th>Default Modul</th>
                         </tr>
-                        <tr *ngFor="let item of table_list | paginate: { itemsPerPage: filter.limit, currentPage: filter.page }">
-                            <td><button class="btn btn-danger" (click)="remove(item.table_name)">Hapus</button></td>
-                            <td>{{ item.table_name }}</td>
+                        <tr *ngFor="let item of module_list | paginate: { itemsPerPage: filter.limit, currentPage: filter.page }">
+                            <td><button class="btn btn-danger" (click)="remove(item.module_name)">Hapus</button></td>
+                            <td>{{ item.module_name }}</td>
                             <td>{{ item.primary_key }}</td>
                             <td>{{ item.module_name }}</td>
                         </tr>
-                        <tr *ngIf="table_list.length == 0">
+                        <tr *ngIf="module_list.length == 0">
                             <td colspan="100">No data</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="col-md-12 col-xs-12">
-                <pagination [(ngModel)]="filter.page" [rotate]="rotate" [maxSize]="5" [boundaryLinks]="true" [totalItems]="table_list.length" [itemsPerPage]="filter.limit"></pagination>
+                <pagination [(ngModel)]="filter.page" [rotate]="rotate" [maxSize]="5" [boundaryLinks]="true" [totalItems]="module_list.length" [itemsPerPage]="filter.limit"></pagination>
             </div>
         </div>
     </div>

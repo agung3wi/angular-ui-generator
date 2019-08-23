@@ -19,8 +19,11 @@
                             <th>Primary Key</th>
                             <th>Default Modul</th>
                         </tr>
-                        <tr *ngFor="let item of table_list | paginate: { itemsPerPage: filter.limit, currentPage: filter.page }">
-                            <td><button class="btn btn-danger" (click)="remove(item.table_name)">Hapus</button></td>
+                        <tr *ngFor="let item of table_list | paginate: { itemsPerPage: filter.limit, currentPage: filter.page };let i=index ">
+                            <td>
+                                <a class="btn btn-success" [routerLink]="['/edit-table/'+i]">Edit</a>
+                                <button class="btn btn-danger" (click)="remove(item.table_name)">Delete</button>
+                            </td>
                             <td>{{ item.table_name }}</td>
                             <td>{{ item.primary_key }}</td>
                             <td>{{ item.module_name }}</td>

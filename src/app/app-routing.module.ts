@@ -6,6 +6,7 @@ import { TableComponent } from './table/table.component';
 import { AddTableComponent } from './table/add-table.component';
 import { AddModuleComponent } from './module/add-module.component';
 import { ModuleComponent } from './module/module.component';
+import { EditTableComponent } from './table/edit-table.component';
 
 const routes: Routes = [
   {
@@ -114,6 +115,12 @@ const routes: Routes = [
       }, {
         path: 'add-table',
         component: AddTableComponent,
+        data: {
+          title: 'Add Table',
+        }
+      }, {
+        path: 'edit-table/:id',
+        component: EditTableComponent,
         data: {
           title: 'Add Table',
         }

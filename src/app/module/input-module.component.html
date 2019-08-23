@@ -58,7 +58,10 @@
                         </tr>
                         <tr *ngFor="let item of input.fields; let i = index">
                             <td><button *ngIf="item.custom !== false" type="button" class="btn btn-danger btn-xs" (click)="removeField(i)">Delete</button></td>
-                            <td>{{ item.field_name }}</td>
+                            <td>
+                                <input *ngIf="item.custom !== false" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.field_name" />
+                                <b *ngIf="item.custom === false">{{ item.field_name }}</b>
+                            </td>
                             <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.display_name" /></td>
                             <td>
                                 <ng-select [items]="constant.field_list" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.type">
@@ -76,7 +79,7 @@
                             <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.sortable" /></td>
                         </tr>
                         <tr *ngIf="input.fields.length == 0">
-                            <td colspan="100">Column not found</td>
+                            <td colspan="100">Field not found</td>
                         </tr>
                     </tbody>
                 </table>
@@ -126,8 +129,8 @@
                                 </ng-select>
                             </td>
                         </tr>
-                        <tr *ngIf="input.fields.length == 0">
-                            <td colspan="100">Field not found</td>
+                        <tr *ngIf="input.filters.length == 0">
+                            <td colspan="100">Filter not found</td>
                         </tr>
                     </tbody>
                 </table>

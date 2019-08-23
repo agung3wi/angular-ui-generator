@@ -1,6 +1,8 @@
 import { Component, AfterViewInit } from '@angular/core';
 import * as Prism from 'prismjs';
 import { IdbService } from '../../app/services/idb.service';
+import Axios from 'axios';
+import FileDownload from 'js-file-download';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +14,7 @@ export class HomeComponent implements AfterViewInit {
   constructor(
     private idb:IdbService
   ) {
-
+    
   }
   /**
    * @method ngAfterViewInit
@@ -20,11 +22,5 @@ export class HomeComponent implements AfterViewInit {
   ngAfterViewInit() {
     Prism.highlightAll();
   }
-
-  async doDatabaseStuff() {
-    const tt = await this.idb.getAll('table');
-    console.log(tt);  
-  }
-
 
 }

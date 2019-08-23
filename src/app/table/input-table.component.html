@@ -14,9 +14,8 @@
                 <div class="col-md-12 col-xs-12">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Table Name</label>
-
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="table_name" [(ngModel)]="input.table_name">
+                            <input [readonly]="mode === 'edit'" type="text" class="form-control" name="table_name" [(ngModel)]="input.table_name">
                         </div>
                     </div>
                     <div class="form-group">
@@ -62,9 +61,11 @@
                             <th>AI</th>
                             <th>Index</th>
                             <th>Unique</th>
+                            <th>Relation</th>
                         </tr>
                         <tr *ngFor="let item of input.columns; let i = index">
-                            <td><button type="button" class="btn btn-danger btn-xs" (click)="removeColumn(i)">Delete</button></td>
+                            <td><button type="button" class="btn btn-danger btn-xs" (click)="removeColumn(i)">Delete</button>
+                                <button type="button" class="btn btn-success btn-xs" (click)="setRelation(i)">Set Relation</button></td>
                             <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.column_name" /></td>
                             <td>
                                 <ng-select [items]="constant.column_type_list" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.type">
@@ -75,6 +76,7 @@
                             <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.ai" /></td>
                             <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.index" /></td>
                             <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.unique" /></td>
+                            <td><b *ngIf="item.relation !== undefined">{{ item.relation.table_name }}.{{ item.relation.column_name }}</b></td>
                         </tr>
                         <tr *ngIf="input.columns.length == 0">
                             <td colspan="100">Column not found</td>

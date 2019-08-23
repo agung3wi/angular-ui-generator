@@ -3,7 +3,6 @@ import { IdbService } from '../services/idb.service';
 import { Router } from '@angular/router';
 import constant from '../constant';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { LookupColumn } from './lookup-column.component';
 
 @Component({
   templateUrl: './input-module.component.html',
@@ -66,18 +65,6 @@ export class AddModuleComponent {
     await this.idb.set('module', input, input.module_name);
     this.router.navigate(['/module']);
 
-  }
-
-  setPrimaryKey() {
-    const initialState = {
-      fields : this.input.fields,
-      selectedItems: this.input.primary_key
-    };
-    this.bsModalRef = this.modalService.show(LookupColumn, {initialState});
-    this.bsModalRef.content.closeBtnName = 'Tutup';
-    this.bsModalRef.content.onClose.subscribe(result => {
-        this.input.primary_key = result;
-    });
   }
 
   addFilter() {

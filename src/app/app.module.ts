@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { TableComponent } from './table/table.component';
 import { AddTableComponent } from './table/add-table.component';
-
+import { EditTableComponent } from './table/edit-table.component';
 
 import { LoadingPageModule, MaterialBarModule } from 'angular-loading-page';
 import { TabsModule as MkTabsModule, BoxModule, DropdownModule } from 'angular-admin-lte';
@@ -27,6 +27,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { LookupColumn } from './table/lookup-column.component';
 import { ModuleComponent } from './module/module.component';
 import { AddModuleComponent } from './module/add-module.component';
+import { LookupTableColumn } from './table/lookup-table-column.component';
 
 
 @NgModule({
@@ -51,12 +52,15 @@ import { AddModuleComponent } from './module/add-module.component';
     HomeComponent,
     TableComponent,
     AddTableComponent,
+    EditTableComponent,
     LookupColumn,
+    LookupTableColumn,
     ModuleComponent,
     AddModuleComponent
   ],
   entryComponents: [
-    LookupColumn
+    LookupColumn,
+    LookupTableColumn
   ],
   bootstrap: [AppComponent]
 })

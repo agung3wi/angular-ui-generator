@@ -35,5 +35,12 @@
                 <pagination [(ngModel)]="filter.page" [rotate]="rotate" [maxSize]="5" [boundaryLinks]="true" [totalItems]="module_list.length" [itemsPerPage]="filter.limit"></pagination>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <button class="btn" (click)="generateAll()">
+                    Generate Module
+                </button>
+            </div>
+        </div>
     </div>
 </div>

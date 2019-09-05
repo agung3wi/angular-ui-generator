@@ -52,7 +52,11 @@ export class AddModuleComponent {
       display_name: '',
       custom: true,
       type: 'text',
-      unique: false
+      unique: false,
+      add: false,
+      edit:false,
+      view:false,
+      list:false
     })
   }
 
@@ -86,7 +90,13 @@ export class AddModuleComponent {
         display_name: item.column_name,
         custom: false,
         type: 'text',
-        unique: item.unique
+        unique: item.unique,
+        valid_add: [],
+        valid_edit: [],
+        add: false,
+        edit:false,
+        view:false,
+        list:false
       })
     }
     this.input.indexes = table.indexes;

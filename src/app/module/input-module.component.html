@@ -55,6 +55,11 @@
                             <th>Validation Edit</th>
                             <th>Default Value</th>
                             <th>Sortable</th>
+                            <th>Add</th>
+                            <th>Edit</th>
+                            <th>View</th>
+                            <th>List</th>
+
                         </tr>
                         <tr *ngFor="let item of input.fields; let i = index">
                             <td><button *ngIf="item.custom !== false" type="button" class="btn btn-danger btn-xs" (click)="removeField(i)">Delete</button></td>
@@ -77,6 +82,10 @@
                             </td>
                             <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.default" /></td>
                             <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.sortable" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.add" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.edit" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.view" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.list" /></td>
                         </tr>
                         <tr *ngIf="input.fields.length == 0">
                             <td colspan="100">Field not found</td>

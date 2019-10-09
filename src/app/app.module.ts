@@ -1,6 +1,9 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { TagInputModule } from 'ngx-chips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
+ 
 import { adminLteConf } from './admin-lte.conf';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,7 +21,7 @@ import { LoadingPageModule, MaterialBarModule } from 'angular-loading-page';
 import { TabsModule as MkTabsModule, BoxModule, DropdownModule } from 'angular-admin-lte';
 
 // for ngx bootstrap
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
@@ -27,11 +30,15 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { LookupColumn } from './table/lookup-column.component';
 import { ModuleComponent } from './module/module.component';
 import { AddModuleComponent } from './module/add-module.component';
+import { EditModuleComponent } from './module/edit-module.component';
 import { LookupTableColumn } from './table/lookup-table-column.component';
 
 
 @NgModule({
   imports: [
+    TagInputModule, 
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     CoreModule,
@@ -56,7 +63,8 @@ import { LookupTableColumn } from './table/lookup-table-column.component';
     LookupColumn,
     LookupTableColumn,
     ModuleComponent,
-    AddModuleComponent
+    AddModuleComponent,
+    EditModuleComponent
   ],
   entryComponents: [
     LookupColumn,

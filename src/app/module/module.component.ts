@@ -35,8 +35,6 @@ export class ModuleComponent {
       await this.idb.delete('module', index);
       this.module_list = await this.idb.getAll('module');
     }
-
-
    
     async generateAll() {
         let res:any = {};

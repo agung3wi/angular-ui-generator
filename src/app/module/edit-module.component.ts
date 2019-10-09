@@ -1,15 +1,13 @@
 import { Component, AfterViewInit, Input } from '@angular/core';
 import { IdbService } from '../services/idb.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import constant from '../constant';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import _ from 'lodash';
-
 
 @Component({
   templateUrl: './input-module.component.html',
 })
-export class AddModuleComponent {
+export class EditModuleComponent {
 
   item:any= 'bigint';
   input:any = {}
@@ -36,6 +34,7 @@ export class AddModuleComponent {
   constructor(
     private idb:IdbService,
     private router:Router,
+    private route: ActivatedRoute,
     private modalService: BsModalService
   ) {
     this.init();
@@ -46,6 +45,10 @@ export class AddModuleComponent {
     this.input.fields = [];
     this.input.filters = [];
     this.table_list = await this.idb.getAll('table');
+
+    let index = this.route.snapshot.params.id;
+    const module_list = await this.idb.getAll('module');
+    this.input = module_list[index];
   }
 
   addField() {
@@ -86,37 +89,19 @@ export class AddModuleComponent {
   async changeTable() {
     const table = await this.idb.find('table', this.input.table_name);
     this.input.module_name = table.module_name;
-    const listColumnNext = ["id", "active", "created_at", "updated_at", "created_by", "updated_by", "version"];
     for(let item of table.columns) {
-      if(listColumnNext.indexOf(item.column_name)>-1) continue;
-      const display_name = _.startCase(item.column_name.replace("_", " "));
-      let typeField = 'text';
-      switch (item.type) {
-        case 'text':
-          typeField = 'textarea';
-          break;
-        case 'int':
-            typeField = 'dropdown';
-            break;
-        case 'bigint':
-          typeField = 'numeric';
-          break;
-      
-        default:
-          break;
-      }
       this.input.fields.push({
         field_name : item.column_name,
-        display_name: display_name,
+        display_name: item.column_name,
         custom: false,
-        type: typeField,
+        type: 'text',
         unique: item.unique,
         valid_add: [],
         valid_edit: [],
-        add: true,
-        edit:true,
-        view:true,
-        list:true
+        add: false,
+        edit:false,
+        view:false,
+        list:false
       })
     }
     this.input.indexes = table.indexes;

@@ -20,12 +20,12 @@ const constant = {
         'checkbox'
     ],
     validation_list : [
-        {'key' : 'required'},
-        {'key' : 'email'},
-        {'key' : 'integer'},
-        {'key' : 'numeric'},
-        {'key' : 'boolean'},
-        {'key' : 'dateformat:YmdHis'}
+        'required',
+        'email',
+        'integer',
+        'numeric',
+        'boolean',
+        'dateformat:YmdHis'
     ],
     logical_list : [
         {'key' : '='},

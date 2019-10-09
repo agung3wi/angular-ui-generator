@@ -7,6 +7,7 @@ import { AddTableComponent } from './table/add-table.component';
 import { AddModuleComponent } from './module/add-module.component';
 import { ModuleComponent } from './module/module.component';
 import { EditTableComponent } from './table/edit-table.component';
+import { EditModuleComponent } from './module/edit-module.component';
 
 const routes: Routes = [
   {
@@ -135,6 +136,12 @@ const routes: Routes = [
         component: AddModuleComponent,
         data: {
           title: 'Add Module',
+        }
+      }, {
+        path: 'edit-module/:id',
+        component: EditModuleComponent,
+        data: {
+          title: 'Edit Module',
         }
       }
     ]

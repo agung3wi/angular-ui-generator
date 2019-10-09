@@ -26,7 +26,16 @@ export class AddTableComponent {
 
   init() {
     this.constant = constant;
-    this.input.columns = [];
+    this.input.primary_key = ['id'];
+    this.input.columns = [{
+      column_name : 'id',
+      type : 'bigint',
+      size : '',
+      default : '',
+      ai:true,
+      index : false,
+      unique :false
+    }];
     this.input.indexes = [];
   }
 

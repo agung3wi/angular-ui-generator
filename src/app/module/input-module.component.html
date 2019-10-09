@@ -73,12 +73,16 @@
                                 </ng-select>
                             </td>
                             <td>
-                                <ng-multiselect-dropdown [placeholder]="'Select Validation'" [data]="constant.validation_list" [(ngModel)]="item.valid_add" [settings]="dropdownSettings">
-                                </ng-multiselect-dropdown>
+                                <tag-input [(ngModel)]="item.valid_add">
+                                    <tag-input-dropdown [autocompleteItems]="constant.validation_list">
+                                    </tag-input-dropdown>
+                                </tag-input>
                             </td>
                             <td>
-                                <ng-multiselect-dropdown [placeholder]="'Select Validation'" [data]="constant.validation_list" [(ngModel)]="item.valid_edit" [settings]="dropdownSettings">
-                                </ng-multiselect-dropdown>
+                                <tag-input [(ngModel)]="item.valid_edit">
+                                    <tag-input-dropdown [autocompleteItems]="constant.validation_list">
+                                    </tag-input-dropdown>
+                                </tag-input>
                             </td>
                             <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.default" /></td>
                             <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.sortable" /></td>

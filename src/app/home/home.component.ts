@@ -11,6 +11,7 @@ import FileDownload from 'js-file-download';
 })
 export class HomeComponent implements AfterViewInit {
 
+  input:any = {}
   constructor(
     private idb:IdbService
   ) {
@@ -20,7 +21,19 @@ export class HomeComponent implements AfterViewInit {
    * @method ngAfterViewInit
    */
   ngAfterViewInit() {
-    Prism.highlightAll();
+    this.input.back_path = localStorage.getItem("back_path");
+    this.input.front_path = localStorage.getItem("front_path");
+    this.input.mobile_path = localStorage.getItem("mobile_path");
+    this.input.api_url = localStorage.getItem("api_url");
+  }
+
+  save() {
+    let input = this.input;
+    localStorage.setItem("front_path", input.front_path);
+    localStorage.setItem("back_path", input.back_path);
+    localStorage.setItem("mobile_path", input.mobile_path);
+    localStorage.setItem("api_url", input.api_url);
+    alert('Success')
   }
 
 }

@@ -1,0 +1,75 @@
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Detail Template</h3>
+        <div class="box-tools pull-right">
+            <button (click)="save()" class="btn btn-primary">
+            Save
+        </button>
+        </div>
+        <!-- /.box-tools -->
+    </div>
+    <div class="box-body">
+        <form class="form-horizontal">
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Template For</label>
+                        <div class="col-sm-10">
+                            <input name="template_for" type="radio" value="back"  [(ngModel)]="input.template_for" > Backend<br/>
+                            <input name="template_for" type="radio" value="front" [(ngModel)]="input.template_for" > Frontend<br/>
+                            <input name="template_for" type="radio" value="mobile" [(ngModel)]="input.template_for" > Mobile<br/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Template Name</label>
+                        <div class="col-sm-10">
+                            <input [readonly]="mode == 'edit'" type="text" class="form-control" name="template_name" [(ngModel)]="input.template_name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Type Module</label>
+                        <div class="col-sm-10">
+                            <ng-select bindLabel="value" bindValue="key" [items]="constant.type_module_list" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.type_module">
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Type Template</label>
+                        <div class="col-sm-10">
+                            <ng-select bindLabel="value" bindValue="key" [items]="constant.type_template_list" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.type_template">
+                            </ng-select>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="input.type_template == 'change'">
+                        <label class="col-sm-2 control-label">After Content</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="after" [(ngModel)]="input.after">
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="input.type_template == 'change'">
+                        <label class="col-sm-2 control-label">Before Content</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="before" [(ngModel)]="input.before">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">File Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="file_name" [(ngModel)]="input.file_name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">File Content</label>
+                        <div class="col-sm-10">
+                            <!-- <textarea class="form-control" name="file_content" [(ngModel)]="input.file_content">
+                            </textarea> -->
+                            <div style="height: 1000px">
+                                <ngx-monaco-editor style="height: 100%" [options]="editorOptions" name="file_content" [(ngModel)]="input.file_content"></ngx-monaco-editor>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

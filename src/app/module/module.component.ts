@@ -1,7 +1,10 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { IdbService } from '../services/idb.service';
-import Axios from 'axios';
+import axios from 'axios'
 import FileDownload from 'js-file-download';
+import { ToastrService } from 'ngx-toastr';
+import { ClipboardService } from 'ngx-clipboard';
+
 
 @Component({
   templateUrl: './module.component.html',
@@ -17,8 +20,12 @@ export class ModuleComponent {
       dynamicDownload: null as HTMLElement
     }
   }
+
   constructor(
-    private idb:IdbService
+    private idb:IdbService,
+    private toastr: ToastrService,
+    private _clipboardService: ClipboardService
+
   ) {
     this.init();
   }
@@ -40,11 +47,42 @@ export class ModuleComponent {
         let res:any = {};
         res.tables = await this.idb.getAll('table');
         res.modules = await this.idb.getAll('module');
-        this.dyanmicDownloadByHtmlTag({
-          fileName: 'project.json',
-          text: JSON.stringify(res, null, 2)
-        });
+        res.template = await this.idb.getAll('template');
+        let request = {
+          config: res,
+          back_path: localStorage.getItem("back_path"),
+          front_path: localStorage.getItem("front_path"),
+          mobile_path: localStorage.getItem("mobile_path")
+        };
+
+        const headers = {
+
+        }
+
+        axios.post(localStorage.getItem("api_url")+"/generate", request, { headers: headers });
     }
+
+    async download() {
+      let res:any = {};
+      res.tables = await this.idb.getAll('table');
+      res.modules = await this.idb.getAll('module');
+      res.template = await this.idb.getAll('template');
+      this.dyanmicDownloadByHtmlTag({
+        fileName: 'project.json',
+        text: JSON.stringify(res, null, 2)
+      });
+  }
+
+    async copyModule() {
+      let res:any = {};
+      res.tables = await this.idb.getAll('table');
+      res.modules = await this.idb.getAll('module');
+      res.template = await this.idb.getAll('template');
+      var content = JSON.stringify(res, null, 2);
+
+      this.toastr.success("Success Copy Of module");
+      this._clipboardService.copyFromContent(content);
+  }
     
     
   

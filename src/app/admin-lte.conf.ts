@@ -14,6 +14,7 @@ export const adminLteConf = {
     {label: 'Component', iconClasses: 'fa fa-th-list', children: [
         {label: 'Table', route: '/table'},
         {label: 'Module', route: '/module'},
+        {label: 'Template', route: '/template'},
         // {label: 'Header', route: 'layout/header'},
         // {label: 'Sidebar Left', route: 'layout/sidebar-left'},
         // {label: 'Sidebar Right', route: 'layout/sidebar-right'},

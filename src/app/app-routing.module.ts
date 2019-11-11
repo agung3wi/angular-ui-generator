@@ -9,6 +9,10 @@ import { ModuleComponent } from './module/module.component';
 import { EditTableComponent } from './table/edit-table.component';
 import { EditModuleComponent } from './module/edit-module.component';
 
+import { TemplateComponent } from './template/template.component';
+import { EditTemplateComponent } from './template/edit-template.component';
+import { AddTemplateComponent } from './template/add-template.component';
+
 const routes: Routes = [
   {
   path: '',
@@ -142,6 +146,24 @@ const routes: Routes = [
         component: EditModuleComponent,
         data: {
           title: 'Edit Module',
+        }
+      }, {
+        path: 'template',
+        component: TemplateComponent,
+        data: {
+          title: 'List Template',
+        }
+      }, {
+        path: 'add-template',
+        component: AddTemplateComponent,
+        data: {
+          title: 'Add Template',
+        }
+      }, {
+        path: 'edit-template/:id',
+        component: EditTemplateComponent,
+        data: {
+          title: 'Edit Template',
         }
       }
     ]

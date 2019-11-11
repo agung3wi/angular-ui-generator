@@ -20,6 +20,7 @@ export class IdbService {
       upgrade(db) {
         db.createObjectStore('table');
         db.createObjectStore('module');
+        db.createObjectStore('template');
       }
     });
     const tx = db.transaction(table, 'readwrite');
@@ -34,6 +35,7 @@ export class IdbService {
       upgrade(db) {
         db.createObjectStore('table');
         db.createObjectStore('module');
+        db.createObjectStore('template');
       }
     });
     const tx = db.transaction(table, 'readwrite');
@@ -46,6 +48,7 @@ export class IdbService {
       upgrade(db) {
         db.createObjectStore('table');
         db.createObjectStore('module');
+        db.createObjectStore('template');
       }
     });
     const tx = db.transaction(table, 'readwrite');
@@ -60,6 +63,7 @@ export class IdbService {
       upgrade(db) {
         db.createObjectStore('table');
         db.createObjectStore('module');
+        db.createObjectStore('template');
       }
     });
     const row = db.get('table', key);

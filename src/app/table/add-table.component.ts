@@ -33,6 +33,7 @@ export class AddTableComponent {
       size : '',
       default : '',
       ai:true,
+      primary:true,
       index : false,
       unique :false
     }];
@@ -46,6 +47,7 @@ export class AddTableComponent {
       size : '',
       default : '',
       ai:false,
+      primary: false,
       index : false,
       unique :false
     }

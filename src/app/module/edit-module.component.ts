@@ -3,6 +3,7 @@ import { IdbService } from '../services/idb.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import constant from '../constant';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { endTimeRange } from '@angular/core/src/profile/wtf_impl';
 
 @Component({
   templateUrl: './input-module.component.html',
@@ -37,18 +38,53 @@ export class EditModuleComponent {
     private route: ActivatedRoute,
     private modalService: BsModalService
   ) {
-    this.init();
-  }
-
-  async init() {
     this.constant = constant;
     this.input.fields = [];
     this.input.filters = [];
-    this.table_list = await this.idb.getAll('table');
+    
+  }
 
+  ngAfterViewInit() {
+    this.init();
+  }
+
+
+  async init() {
+   
+    this.table_list = await this.idb.getAll('table');
+    
     let index = this.route.snapshot.params.id;
     const module_list = await this.idb.getAll('module');
     this.input = module_list[index];
+
+    const table = this.table_list.find(x => x.table_name == this.input.table_name);
+    table.columns.forEach(item => {
+      if(item.column_name == 'id') return;
+      let index = this.input.fields.findIndex( x=> x.field_name == item.column_name);
+      if(index == -1 ) {
+        this.input.fields.push({
+          field_name : item.column_name,
+          display_name: '',
+          custom: false,
+          type: 'text',
+          unique: item.unique,
+          valid_add: [],
+          valid_edit: [],
+          add: true,
+          edit:true,
+          view:true,
+          list:true
+        })
+      }
+    })
+    this.input.fields.forEach((item, index2) => {
+      if(item.custom) return;
+      let index = table.columns.findIndex( x=> x.column_name == item.field_name);
+      if(index == -1 ) {
+        this.removeField(index2)
+      }
+    })
+    
   }
 
   addField() {

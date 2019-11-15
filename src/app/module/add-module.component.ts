@@ -62,7 +62,7 @@ export class AddModuleComponent {
     })
   }
 
-  removeColumn(index) {
+  removeField(index) {
     this.input.fields.splice(index, 1);
   }
 

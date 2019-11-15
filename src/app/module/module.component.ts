@@ -59,7 +59,10 @@ export class ModuleComponent {
 
         }
 
-        axios.post(localStorage.getItem("api_url")+"/generate", request, { headers: headers });
+        axios.post(localStorage.getItem("api_url")+"/generate", request, { headers: headers })
+        .then(res => {
+          this.toastr.success("Success Generate Of module");
+        })
     }
 
     async download() {
@@ -80,8 +83,8 @@ export class ModuleComponent {
       res.template = await this.idb.getAll('template');
       var content = JSON.stringify(res, null, 2);
 
-      this.toastr.success("Success Copy Of module");
       this._clipboardService.copyFromContent(content);
+      this.toastr.success("Success Copy Of module");
   }
     
     

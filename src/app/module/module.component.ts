@@ -76,7 +76,7 @@ export class ModuleComponent {
       });
   }
 
-    async copyModule() {
+  async copyModule() {
       let res:any = {};
       res.tables = await this.idb.getAll('table');
       res.modules = await this.idb.getAll('module');

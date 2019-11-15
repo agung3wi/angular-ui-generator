@@ -42,12 +42,15 @@
         </div>
         <div class="row">
             <div class="col-md-12 col-xs-12">
-                <button class="btn" (click)="generateAll()">
+                <button class="btn" (click)="idb.generateAll()">
                     Generate Module
                 </button>
 
-                <button class="btn" (click)="copyModule()">
+                <button class="btn" (click)="idb.copyModule()">
                     Copy Module
+                </button>
+                <button class="btn" (click)="idb.download()">
+                    Download
                 </button>
             </div>
         </div>

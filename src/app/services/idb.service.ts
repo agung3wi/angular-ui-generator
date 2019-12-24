@@ -9,7 +9,7 @@ import { ClipboardService } from 'ngx-clipboard';
 })
 export class IdbService {
 
-  dbName:string = 'generator';
+  dbName: string = 'generator';
   constructor(
     private toastr: ToastrService,
     private _clipboardService: ClipboardService
@@ -25,7 +25,7 @@ export class IdbService {
 
 
   async set(table, value, key) {
-    
+
 
     const db = await openDB(this.dbName, 1, {
       upgrade(db) {
@@ -82,7 +82,7 @@ export class IdbService {
   }
 
   async generateAll() {
-    let res:any = {};
+    let res: any = {};
     res.tables = await this.getAll('table');
     res.modules = await this.getAll('module');
     res.template = await this.getAll('template');
@@ -97,49 +97,63 @@ export class IdbService {
 
     }
 
-    axios.post(localStorage.getItem("api_url")+"/generate", request, { headers: headers })
-    .then(res => {
-      this.toastr.success("Success Generate Of module");
-    })
-}
-
-async download() {
-  let res:any = {};
-  res.tables = await this.getAll('table');
-  res.modules = await this.getAll('module');
-  res.template = await this.getAll('template');
-  this.dyanmicDownloadByHtmlTag({
-    fileName: 'project.json',
-    text: JSON.stringify(res, null, 2)
-  });
-}
-
-async copyModule() {
-  let res:any = {};
-  res.tables = await this.getAll('table');
-  res.modules = await this.getAll('module');
-  res.template = await this.getAll('template');
-  var content = JSON.stringify(res, null, 2);
-
-  this._clipboardService.copyFromContent(content);
-  this.toastr.success("Success Copy Of module");
-}
-
-private dyanmicDownloadByHtmlTag(arg: {
-  fileName: string,
-  text: string
-}) {
-  if (!this.setting.element.dynamicDownload) {
-    this.setting.element.dynamicDownload = document.createElement('a');
+    axios.post(localStorage.getItem("api_url") + "/generate", request, { headers: headers })
+      .then(res => {
+        this.toastr.success("Success Generate Of module");
+      })
   }
-  const element = this.setting.element.dynamicDownload;
-  const fileType = arg.fileName.indexOf('.json') > -1 ? 'text/json' : 'text/plain';
-  element.setAttribute('href', `data:${fileType};charset=utf-8,${encodeURIComponent(arg.text)}`);
-  element.setAttribute('download', arg.fileName);
 
-  var event = new MouseEvent("click");
-  element.dispatchEvent(event);
-}
+  async download() {
+    let res: any = {};
+    res.tables = await this.getAll('table');
+    res.modules = await this.getAll('module');
+    res.template = await this.getAll('template');
+
+    let request = {
+      config: res,
+      back_path: localStorage.getItem("back_path"),
+      front_path: localStorage.getItem("front_path"),
+      mobile_path: localStorage.getItem("mobile_path")
+    };
+
+    this.dyanmicDownloadByHtmlTag({
+      fileName: 'project.json',
+      text: JSON.stringify(request, null, 2)
+    });
+  }
+
+  async copyModule() {
+    let res: any = {};
+    res.tables = await this.getAll('table');
+    res.modules = await this.getAll('module');
+    res.template = await this.getAll('template');
+    let request = {
+      config: res,
+      back_path: localStorage.getItem("back_path"),
+      front_path: localStorage.getItem("front_path"),
+      mobile_path: localStorage.getItem("mobile_path")
+    };
+    var content = JSON.stringify(request, null, 2);
+
+    this._clipboardService.copyFromContent(content);
+    this.toastr.success("Success Copy Of module");
+  }
+
+  private dyanmicDownloadByHtmlTag(arg: {
+    fileName: string,
+    text: string
+  }) {
+    if (!this.setting.element.dynamicDownload) {
+      this.setting.element.dynamicDownload = document.createElement('a');
+    }
+    const element = this.setting.element.dynamicDownload;
+    const fileType = arg.fileName.indexOf('.json') > -1 ? 'text/json' : 'text/plain';
+    element.setAttribute('href', `data:${fileType};charset=utf-8,${encodeURIComponent(arg.text)}`);
+    element.setAttribute('download', arg.fileName);
+
+    var event = new MouseEvent("click");
+    element.dispatchEvent(event);
+  }
 
 
 }

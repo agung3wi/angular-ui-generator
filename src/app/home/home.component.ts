@@ -61,15 +61,16 @@ export class HomeComponent implements AfterViewInit {
 
   loadConfig() {
     const fileContent = JSON.parse(this.fileContent);
+    const config = fileContent.config;
     try {
-      fileContent.tables.map(async (item) => {
+      config.tables.map(async (item) => {
         await this.idb.set('table', item, item.table_name);
       });
-      fileContent.modules.map(async (item) => {
+      config.modules.map(async (item) => {
         await this.idb.set('module', item, item.module_name);
       });
 
-      fileContent.template.map(async (item) => {
+      config.template.map(async (item) => {
         await this.idb.set('template', item, item.template_name);
       });
     } catch (err) {

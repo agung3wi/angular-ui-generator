@@ -124,6 +124,8 @@ export class AddModuleComponent {
         const columns_relation = (await this.idb.find('table', item.relation.table_name)).columns;
         this.input.relation_fields.push({
           table_name: item.relation.table_name,
+          column_name: item.relation.column_name,
+          column_origin_name: item.column_name,
           column_list: columns_relation,
           column_selected_list: []
         })

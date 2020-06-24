@@ -8,8 +8,8 @@ import { Subject } from 'rxjs';
 
 export class LookupColumn {
 
-    columns:any = []
-    selectedItems:any = [];
+    columns: any = []
+    selectedItems: any = [];
     dropdownSettings = {
         singleSelection: false,
         idField: 'column_name',
@@ -24,9 +24,9 @@ export class LookupColumn {
     constructor(
         public bsModalRef: BsModalRef
     ) {
-        
+
     }
-   
+
     public ngOnInit(): void {
         this.onClose = new Subject();
     }

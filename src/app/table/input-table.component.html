@@ -3,8 +3,8 @@
         <h3 class="box-title">Detail Table</h3>
         <div class="box-tools pull-right">
             <button (click)="save()" class="btn btn-primary">
-            Save
-        </button>
+                Save
+            </button>
         </div>
         <!-- /.box-tools -->
     </div>
@@ -15,13 +15,15 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Table Name</label>
                         <div class="col-sm-10">
-                            <input [readonly]="mode === 'edit'" type="text" class="form-control" name="table_name" [(ngModel)]="input.table_name">
+                            <input [readonly]="mode === 'edit'" type="text" class="form-control" name="table_name"
+                                [(ngModel)]="input.table_name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Default Module</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="module_name" [(ngModel)]="input.module_name" />
+                            <input type="text" class="form-control" name="module_name"
+                                [(ngModel)]="input.module_name" />
                         </div>
                     </div>
                 </div>
@@ -55,23 +57,38 @@
                             <th>Primary</th>
                             <th>Index</th>
                             <th>Unique</th>
+                            <th>Tipe Relation</th>
                             <th>Relation</th>
                         </tr>
                         <tr *ngFor="let item of input.columns; let i = index">
-                            <td><button type="button" class="btn btn-danger btn-xs" (click)="removeColumn(i)">Delete</button>
-                                <button type="button" class="btn btn-success btn-xs" (click)="setRelation(i)">Set Relation</button></td>
-                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.column_name" /></td>
+                            <td><button type="button" class="btn btn-danger btn-xs"
+                                    (click)="removeColumn(i)">Delete</button>
+                                <button type="button" class="btn btn-success btn-xs" (click)="setRelation(i)">Set
+                                    Relation</button></td>
+                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.column_name" /></td>
                             <td>
-                                <ng-select [items]="constant.column_type_list" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.type">
+                                <ng-select [items]="constant.column_type_list" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.type">
                                 </ng-select>
                             </td>
-                            <td><input type="number" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.size" /></td>
-                            <td><input type="number" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.default" /></td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.ai" /></td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.primary" /></td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.index" /></td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.unique" /></td>
-                            <td><b *ngIf="item.relation !== undefined">{{ item.relation.table_name }}.{{ item.relation.column_name }}</b></td>
+                            <td><input type="number" class="form-control" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.size" /></td>
+                            <td><input type="number" class="form-control" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.default" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.ai" />
+                            </td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.primary" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.index" />
+                            </td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.unique" /></td>
+                            <td><b *ngIf="item.type_relation !== undefined">{{ item.type_relation }}</b>
+                            </td>
+                            <td><b
+                                    *ngIf="item.relation !== undefined">{{ item.relation.table_name }}.{{ item.relation.column_name }}</b>
+                            </td>
                         </tr>
                         <tr *ngIf="input.columns.length == 0">
                             <td colspan="100">Column not found</td>
@@ -105,11 +122,15 @@
                             <th>Unique</th>
                         </tr>
                         <tr *ngFor="let item of input.indexes; let i = index">
-                            <td><button type="button" class="btn btn-danger btn-xs" (click)="removeIdex(i)">Delete</button></td>
-                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.index_name" /></td>
+                            <td><button type="button" class="btn btn-danger btn-xs"
+                                    (click)="removeIdex(i)">Delete</button></td>
+                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.index_name" /></td>
                             <td>{{ item.columns }}</td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.index" /></td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.unique" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.index" />
+                            </td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.unique" /></td>
                         </tr>
                         <tr *ngIf="input.indexes.length == 0">
                             <td colspan="100">Index not found</td>

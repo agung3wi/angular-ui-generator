@@ -9,13 +9,17 @@ import { IdbService } from '../services/idb.service';
 
 export class LookupTableColumn {
 
-    input:any = {};
+    input: any = {};
     public onClose: Subject<boolean>;
-    table_list:any = [];
-    column_list:any = [];
+    table_list: any = [];
+    column_list: any = [];
+    relation_list: any = [
+        { type_relation: 'has_one' },
+        { type_relation: 'has_many' }
+    ];
     constructor(
         public bsModalRef: BsModalRef,
-        public idb:IdbService
+        public idb: IdbService
     ) {
         this.init()
     }
@@ -23,7 +27,7 @@ export class LookupTableColumn {
     async init() {
         this.table_list = await this.idb.getAll('table');
     }
-   
+
     public ngOnInit(): void {
         this.onClose = new Subject();
     }

@@ -3,7 +3,7 @@
         <h3 class="box-title">Detail Module</h3>
         <div class="box-tools pull-right">
             <button (click)="save()" class="btn btn-primary">
-            Save
+                Save
             </button>
         </div>
         <!-- /.box-tools -->
@@ -15,7 +15,9 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Table</label>
                         <div class="col-sm-10">
-                            <ng-select bindLabel="table_name" (change)="changeTable()" bindValue="table_name" [items]="table_list" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.table_name">
+                            <ng-select bindLabel="table_name" (change)="changeTable()" bindValue="table_name"
+                                [items]="table_list" [ngModelOptions]="{standalone: true}"
+                                [(ngModel)]="input.table_name">
                             </ng-select>
                         </div>
                     </div>
@@ -28,7 +30,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Display Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" name="display_name" [(ngModel)]="input.display_name">
+                            <input type="text" class="form-control" name="display_name"
+                                [(ngModel)]="input.display_name">
                         </div>
                     </div>
                 </div>
@@ -61,6 +64,7 @@
                             <th>Validation Edit</th>
                             <th>Default Value</th>
                             <th>Sortable</th>
+                            <th>Searchable</th>
                             <th>Add</th>
                             <th>Edit</th>
                             <th>View</th>
@@ -68,14 +72,18 @@
 
                         </tr>
                         <tr *ngFor="let item of input.fields; let i = index">
-                            <td><button *ngIf="item.custom !== false" type="button" class="btn btn-danger btn-xs" (click)="removeField(i)">Delete</button></td>
+                            <td><button *ngIf="item.custom !== false" type="button" class="btn btn-danger btn-xs"
+                                    (click)="removeField(i)">Delete</button></td>
                             <td>
-                                <input *ngIf="item.custom !== false" type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.field_name" />
+                                <input *ngIf="item.custom !== false" type="text" class="form-control"
+                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="item.field_name" />
                                 <b *ngIf="item.custom === false">{{ item.field_name }}</b>
                             </td>
-                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.display_name" /></td>
+                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.display_name" /></td>
                             <td>
-                                <ng-select [items]="constant.field_list" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.type">
+                                <ng-select [items]="constant.field_list" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.type">
                                 </ng-select>
                             </td>
                             <td>
@@ -90,12 +98,20 @@
                                     </tag-input-dropdown>
                                 </tag-input>
                             </td>
-                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.default" /></td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.sortable" /></td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.add" /></td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.edit" /></td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.view" /></td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.list" /></td>
+                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.default" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.sortable" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.searchable" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.add" />
+                            </td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.edit" />
+                            </td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.view" />
+                            </td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.list" />
+                            </td>
                         </tr>
                         <tr *ngIf="input.fields.length == 0">
                             <td colspan="100">Field not found</td>
@@ -129,22 +145,28 @@
                             <th>Logical</th>
                         </tr>
                         <tr *ngFor="let item of input.filters; let i = index">
-                            <td><button *ngIf="item.custom !== false" type="button" class="btn btn-danger btn-xs" (click)="removeField(i)">Delete</button></td>
+                            <td><button *ngIf="item.custom !== false" type="button" class="btn btn-danger btn-xs"
+                                    (click)="removeField(i)">Delete</button></td>
                             <td>
-                                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.field_name" />
+                                <input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.field_name" />
                             </td>
-                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.display_name" /></td>
+                            <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.display_name" /></td>
                             <td>
-                                <ng-select [items]="constant.field_list" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.type">
+                                <ng-select [items]="constant.field_list" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.type">
                                 </ng-select>
                             </td>
                             <td>
                                 <ng-select [multiple]="true" [(ngModel)]="item.field_query">
-                                    <ng-option *ngFor="let field of input.fields" [value]="field.field_name">{{field.field_name}}</ng-option>
+                                    <ng-option *ngFor="let field of input.fields" [value]="field.field_name">
+                                        {{field.field_name}}</ng-option>
                                 </ng-select>
                             </td>
                             <td>
-                                <ng-select [items]="constant.logical_list" bindLabel="key" bindValue="key" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.logical">
+                                <ng-select [items]="constant.logical_list" bindLabel="key" bindValue="key"
+                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="item.logical">
                                 </ng-select>
                             </td>
                         </tr>

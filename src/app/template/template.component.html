@@ -3,8 +3,8 @@
         <h3 class="box-title">List Template</h3>
         <div class="box-tools pull-right">
             <a [routerLink]="['/add-template']" class="btn btn-primary">
-        Add Template
-      </a>
+                Add Template
+            </a>
         </div>
         <!-- /.box-tools -->
     </div>
@@ -16,16 +16,17 @@
                         <tr>
                             <th>Aksi</th>
                             <th>Template Name</th>
-                            <th>Primary Key</th>
+                            <th>Template For</th>
                             <th>Default Modul</th>
                         </tr>
-                        <tr *ngFor="let item of template_list | paginate: { itemsPerPage: filter.limit, currentPage: filter.page }; let i=index">
+                        <tr
+                            *ngFor="let item of template_list | paginate: { itemsPerPage: filter.limit, currentPage: filter.page }; let i=index">
                             <td>
                                 <a class="btn btn-success" [routerLink]="['/edit-template/'+i]">Edit</a>
                                 <button class="btn btn-danger" (click)="remove(item.template_name)">Hapus</button>
                             </td>
                             <td>{{ item.template_name }}</td>
-                            <td>{{ item.primary_key }}</td>
+                            <td>{{ item.template_for }}</td>
                             <td>{{ item.template_name }}</td>
                         </tr>
                         <tr *ngIf="template_list.length == 0">
@@ -35,7 +36,8 @@
                 </table>
             </div>
             <div class="col-md-12 col-xs-12">
-                <pagination [(ngModel)]="filter.page" [rotate]="rotate" [maxSize]="5" [boundaryLinks]="true" [totalItems]="template_list.length" [itemsPerPage]="filter.limit"></pagination>
+                <pagination [(ngModel)]="filter.page" [rotate]="rotate" [maxSize]="5" [boundaryLinks]="true"
+                    [totalItems]="template_list.length" [itemsPerPage]="filter.limit"></pagination>
             </div>
         </div>
         <div class="row">

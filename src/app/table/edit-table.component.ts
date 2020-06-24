@@ -11,15 +11,15 @@ import { LookupTableColumn } from './lookup-table-column.component';
 })
 export class EditTableComponent {
 
-  item:any= 'bigint';
-  input:any = {}
-  constant:any = {};
-  columns:any = [];
+  item: any = 'bigint';
+  input: any = {}
+  constant: any = {};
+  columns: any = [];
   bsModalRef: BsModalRef;
-  mode:string ='edit';
+  mode: string = 'edit';
   constructor(
-    private idb:IdbService,
-    private router:Router,
+    private idb: IdbService,
+    private router: Router,
     private route: ActivatedRoute,
     private modalService: BsModalService
   ) {
@@ -34,18 +34,18 @@ export class EditTableComponent {
     let index = this.route.snapshot.params.id;
     const table_list = await this.idb.getAll('table');
     this.input = table_list[index];
-    
+
   }
 
   addColumn() {
     const column = {
-      column_name : '',
-      type : 'bigint',
-      size : '',
-      default : '',
-      ai:false,
-      index : false,
-      unique :false
+      column_name: '',
+      type: 'bigint',
+      size: '',
+      default: '',
+      ai: false,
+      index: false,
+      unique: false
     }
     this.columns.push(column)
     this.input.columns.push(column);
@@ -65,38 +65,39 @@ export class EditTableComponent {
 
   setPrimaryKey() {
     const initialState = {
-      columns : this.input.columns,
+      columns: this.input.columns,
       selectedItems: this.input.primary_key
     };
-    this.bsModalRef = this.modalService.show(LookupColumn, {initialState});
+    this.bsModalRef = this.modalService.show(LookupColumn, { initialState });
     this.bsModalRef.content.closeBtnName = 'Tutup';
     this.bsModalRef.content.onClose.subscribe(result => {
-        this.input.primary_key = result;
+      this.input.primary_key = result;
     });
   }
 
   setRelation(i) {
     const initialState = {};
-    this.bsModalRef = this.modalService.show(LookupTableColumn, {initialState});
+    this.bsModalRef = this.modalService.show(LookupTableColumn, { initialState });
     this.bsModalRef.content.closeBtnName = 'Tutup';
     this.bsModalRef.content.onClose.subscribe(result => {
-        this.input.columns[i].relation = result;
+      this.input.columns[i].relation = result;
+      this.input.columns[i].type_relation = result.type_relation;
     });
   }
 
   addIndex() {
     const initialState = {
-      columns : this.input.columns
+      columns: this.input.columns
     };
-    this.bsModalRef = this.modalService.show(LookupColumn, {initialState});
+    this.bsModalRef = this.modalService.show(LookupColumn, { initialState });
     this.bsModalRef.content.closeBtnName = 'Tutup';
     this.bsModalRef.content.onClose.subscribe(result => {
-        this.input.indexes.push({
-          columns:result,
-          index_name: "",
-          index:true,
-          unique:false
-        });
+      this.input.indexes.push({
+        columns: result,
+        index_name: "",
+        index: true,
+        unique: false
+      });
     });
   }
 }

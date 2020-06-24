@@ -5,15 +5,28 @@
     </button>
 </div>
 <div class="modal-body">
+
     <div class="col-md-12 col-sm-12">
         <div class="form-group">
-            <ng-select (change)="changeTable()" [items]="table_list" bindValue="table_name" bindLabel="table_name" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.table_name">
+            <label for="relation">Tipe Relasi</label>
+            <ng-select [items]="relation_list" bindValue="type_relation" bindLabel="type_relation"
+                [ngModelOptions]="{standalone: true}" [(ngModel)]="input.type_relation">
             </ng-select>
         </div>
     </div>
     <div class="col-md-12 col-sm-12">
         <div class="form-group">
-            <ng-select [items]="column_list" bindValue="column_name" bindLabel="column_name" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.column_name">
+            <label for="table">Table</label>
+            <ng-select (change)="changeTable()" [items]="table_list" bindValue="table_name" bindLabel="table_name"
+                [ngModelOptions]="{standalone: true}" [(ngModel)]="input.table_name">
+            </ng-select>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12">
+        <div class="form-group">
+            <label for="column">Column</label>
+            <ng-select [items]="column_list" bindValue="column_name" bindLabel="column_name"
+                [ngModelOptions]="{standalone: true}" [(ngModel)]="input.column_name">
             </ng-select>
         </div>
     </div>

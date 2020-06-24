@@ -11,14 +11,14 @@ import { LookupTableColumn } from './lookup-table-column.component';
 })
 export class AddTableComponent {
 
-  item:any= 'bigint';
-  input:any = {}
-  constant:any = {};
-  columns:any = [];
+  item: any = 'bigint';
+  input: any = {}
+  constant: any = {};
+  columns: any = [];
   bsModalRef: BsModalRef;
   constructor(
-    private idb:IdbService,
-    private router:Router,
+    private idb: IdbService,
+    private router: Router,
     private modalService: BsModalService
   ) {
     this.init();
@@ -28,28 +28,28 @@ export class AddTableComponent {
     this.constant = constant;
     this.input.primary_key = ['id'];
     this.input.columns = [{
-      column_name : 'id',
-      type : 'bigint',
-      size : '',
-      default : '',
-      ai:true,
-      primary:true,
-      index : false,
-      unique :false
+      column_name: 'id',
+      type: 'bigint',
+      size: '',
+      default: '',
+      ai: true,
+      primary: true,
+      index: false,
+      unique: false
     }];
     this.input.indexes = [];
   }
 
   addColumn() {
     const column = {
-      column_name : '',
-      type : 'bigint',
-      size : '',
-      default : '',
-      ai:false,
+      column_name: '',
+      type: 'bigint',
+      size: '',
+      default: '',
+      ai: false,
       primary: false,
-      index : false,
-      unique :false
+      index: false,
+      unique: false
     }
     this.columns.push(column)
     this.input.columns.push(column);
@@ -68,38 +68,39 @@ export class AddTableComponent {
 
   setPrimaryKey() {
     const initialState = {
-      columns : this.input.columns,
+      columns: this.input.columns,
       selectedItems: this.input.primary_key
     };
-    this.bsModalRef = this.modalService.show(LookupColumn, {initialState});
+    this.bsModalRef = this.modalService.show(LookupColumn, { initialState });
     this.bsModalRef.content.closeBtnName = 'Tutup';
     this.bsModalRef.content.onClose.subscribe(result => {
-        this.input.primary_key = result;
+      this.input.primary_key = result;
     });
   }
 
   setRelation(i) {
     const initialState = {};
-    this.bsModalRef = this.modalService.show(LookupTableColumn, {initialState});
+    this.bsModalRef = this.modalService.show(LookupTableColumn, { initialState });
     this.bsModalRef.content.closeBtnName = 'Tutup';
     this.bsModalRef.content.onClose.subscribe(result => {
-        this.input.columns[i].relation = result;
+      this.input.columns[i].relation = result;
+      this.input.columns[i].type_relation = result.type_relation;
     });
   }
 
   addIndex() {
     const initialState = {
-      columns : this.input.columns
+      columns: this.input.columns
     };
-    this.bsModalRef = this.modalService.show(LookupColumn, {initialState});
+    this.bsModalRef = this.modalService.show(LookupColumn, { initialState });
     this.bsModalRef.content.closeBtnName = 'Tutup';
     this.bsModalRef.content.onClose.subscribe(result => {
-        this.input.indexes.push({
-          columns:result,
-          index_name: "",
-          index:true,
-          unique:false
-        });
+      this.input.indexes.push({
+        columns: result,
+        index_name: "",
+        index: true,
+        unique: false
+      });
     });
   }
 }

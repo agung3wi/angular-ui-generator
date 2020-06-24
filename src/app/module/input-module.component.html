@@ -123,6 +123,59 @@
     </div>
 </div>
 
+<!-- Field Join -->
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Field Relation</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                        <tr>
+                            <th>Action</th>
+                            <th>Table Name</th>
+                            <th>Column List</th>
+                            <th>Column Alias</th>
+                            <th>Label</th>
+                        </tr>
+                        <tr *ngFor="let item of input.relation_fields; let i = index">
+                            <td></td>
+                            <td>
+                                <input *ngIf="item.custom !== false" type="text" class="form-control"
+                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="item.table_name" />
+                                <b *ngIf="item.custom === false">{{ item.table_name }}</b>
+                            </td>
+                            <td>
+                                <ng-select [multiple]="true" [(ngModel)]="item.field_list">
+                                    <ng-option *ngFor="let column of item.column_list" [value]="column.column_name">
+                                        {{column.column_name}}</ng-option>
+                                </ng-select>
+                            </td>
+                            <td>
+                                <tag-input [(ngModel)]="item.field_alias_list">
+                                    <tag-input-dropdown>
+                                    </tag-input-dropdown>
+                                </tag-input>
+                            </td>
+                            <td>
+                                <tag-input [(ngModel)]="item.field_label_list">
+                                    <tag-input-dropdown>
+                                    </tag-input-dropdown>
+                                </tag-input>
+                            </td>
+                        </tr>
+                        <tr *ngIf="input.fields.length == 0">
+                            <td colspan="100">Field not found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="box">
     <div class="box-header with-border">
         <h3 class="box-title">List Filter</h3>

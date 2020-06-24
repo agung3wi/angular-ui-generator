@@ -10,10 +10,10 @@ import { endTimeRange } from '@angular/core/src/profile/wtf_impl';
 })
 export class EditModuleComponent {
 
-  item:any= 'bigint';
-  input:any = {}
-  constant:any = {};
-  fields:any = [];
+  item: any = 'bigint';
+  input: any = {}
+  constant: any = {};
+  fields: any = [];
   bsModalRef: BsModalRef;
   table_list: any = [];
   dropdownSettings = {
@@ -33,15 +33,15 @@ export class EditModuleComponent {
   };
 
   constructor(
-    private idb:IdbService,
-    private router:Router,
+    private idb: IdbService,
+    private router: Router,
     private route: ActivatedRoute,
     private modalService: BsModalService
   ) {
     this.constant = constant;
     this.input.fields = [];
     this.input.filters = [];
-    
+
   }
 
   ngAfterViewInit() {
@@ -50,20 +50,20 @@ export class EditModuleComponent {
 
 
   async init() {
-   
+
     this.table_list = await this.idb.getAll('table');
-    
+
     let index = this.route.snapshot.params.id;
     const module_list = await this.idb.getAll('module');
     this.input = module_list[index];
 
     const table = this.table_list.find(x => x.table_name == this.input.table_name);
     table.columns.forEach(item => {
-      if(item.column_name == 'id') return;
-      let index = this.input.fields.findIndex( x=> x.field_name == item.column_name);
-      if(index == -1 ) {
+      if (item.column_name == 'id') return;
+      let index = this.input.fields.findIndex(x => x.field_name == item.column_name);
+      if (index == -1) {
         this.input.fields.push({
-          field_name : item.column_name,
+          field_name: item.column_name,
           display_name: '',
           custom: false,
           type: 'text',
@@ -71,33 +71,33 @@ export class EditModuleComponent {
           valid_add: [],
           valid_edit: [],
           add: true,
-          edit:true,
-          view:true,
-          list:true
+          edit: true,
+          view: true,
+          list: true
         })
       }
     })
     this.input.fields.forEach((item, index2) => {
-      if(item.custom) return;
-      let index = table.columns.findIndex( x=> x.column_name == item.field_name);
-      if(index == -1 ) {
+      if (item.custom) return;
+      let index = table.columns.findIndex(x => x.column_name == item.field_name);
+      if (index == -1) {
         this.removeField(index2)
       }
     })
-    
+
   }
 
   addField() {
     this.input.fields.push({
-      field_name : '',
+      field_name: '',
       display_name: '',
       custom: true,
       type: 'text',
       unique: false,
       add: false,
-      edit:false,
-      view:false,
-      list:false
+      edit: false,
+      view: false,
+      list: false
     })
   }
 
@@ -114,10 +114,10 @@ export class EditModuleComponent {
 
   addFilter() {
     const filter = {
-      field_name : '',
-      type : 'text',
-      index : false,
-      unique :false
+      field_name: '',
+      type: 'text',
+      index: false,
+      unique: false
     }
     this.input.filters.push(filter);
   }
@@ -125,9 +125,9 @@ export class EditModuleComponent {
   async changeTable() {
     const table = await this.idb.find('table', this.input.table_name);
     this.input.module_name = table.module_name;
-    for(let item of table.columns) {
+    for (let item of table.columns) {
       this.input.fields.push({
-        field_name : item.column_name,
+        field_name: item.column_name,
         display_name: item.column_name,
         custom: false,
         type: 'text',
@@ -135,9 +135,9 @@ export class EditModuleComponent {
         valid_add: [],
         valid_edit: [],
         add: false,
-        edit:false,
-        view:false,
-        list:false
+        edit: false,
+        view: false,
+        list: false
       })
     }
     this.input.indexes = table.indexes;

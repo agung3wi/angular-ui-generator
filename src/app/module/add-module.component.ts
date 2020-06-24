@@ -11,10 +11,10 @@ import _ from 'lodash';
 })
 export class AddModuleComponent {
 
-  item:any= 'bigint';
-  input:any = {}
-  constant:any = {};
-  fields:any = [];
+  item: any = 'bigint';
+  input: any = {}
+  constant: any = {};
+  fields: any = [];
   bsModalRef: BsModalRef;
   table_list: any = [];
   dropdownSettings = {
@@ -34,8 +34,8 @@ export class AddModuleComponent {
   };
 
   constructor(
-    private idb:IdbService,
-    private router:Router,
+    private idb: IdbService,
+    private router: Router,
     private modalService: BsModalService
   ) {
     this.init();
@@ -44,21 +44,22 @@ export class AddModuleComponent {
   async init() {
     this.constant = constant;
     this.input.fields = [];
+    this.input.relation_fields = [];
     this.input.filters = [];
     this.table_list = await this.idb.getAll('table');
   }
 
   addField() {
     this.input.fields.push({
-      field_name : '',
+      field_name: '',
       display_name: '',
       custom: true,
       type: 'text',
       unique: false,
       add: false,
-      edit:false,
-      view:false,
-      list:false
+      edit: false,
+      view: false,
+      list: false
     })
   }
 
@@ -75,10 +76,10 @@ export class AddModuleComponent {
 
   addFilter() {
     const filter = {
-      field_name : '',
-      type : 'text',
-      index : false,
-      unique :false
+      field_name: '',
+      type: 'text',
+      index: false,
+      unique: false
     }
     this.input.filters.push(filter);
   }
@@ -87,8 +88,8 @@ export class AddModuleComponent {
     const table = await this.idb.find('table', this.input.table_name);
     this.input.module_name = table.module_name;
     const listColumnNext = ["id", "active", "created_at", "updated_at", "created_by", "updated_by", "version"];
-    for(let item of table.columns) {
-      if(listColumnNext.indexOf(item.column_name)>-1) continue;
+    for (let item of table.columns) {
+      if (listColumnNext.indexOf(item.column_name) > -1) continue;
       const display_name = _.startCase(item.column_name.replace("_", " "));
       let typeField = 'text';
       switch (item.type) {
@@ -96,17 +97,17 @@ export class AddModuleComponent {
           typeField = 'textarea';
           break;
         case 'int':
-            typeField = 'dropdown';
-            break;
+          typeField = 'dropdown';
+          break;
         case 'bigint':
           typeField = 'numeric';
           break;
-      
+
         default:
           break;
       }
       this.input.fields.push({
-        field_name : item.column_name,
+        field_name: item.column_name,
         display_name: display_name,
         custom: false,
         type: typeField,
@@ -114,10 +115,19 @@ export class AddModuleComponent {
         valid_add: [],
         valid_edit: [],
         add: true,
-        edit:true,
-        view:true,
-        list:true
+        edit: true,
+        view: true,
+        list: true
       })
+
+      if (item.type_relation === 'has_one') {
+        const columns_relation = (await this.idb.find('table', item.relation.table_name)).columns;
+        this.input.relation_fields.push({
+          table_name: item.relation.table_name,
+          column_list: columns_relation,
+          column_selected_list: []
+        })
+      }
     }
     this.input.indexes = table.indexes;
   }

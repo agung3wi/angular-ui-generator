@@ -62,14 +62,16 @@
                             <th>Input Type</th>
                             <th>Validation Add</th>
                             <th>Validation Edit</th>
+                            <th>Lookup Module</th>
                             <th>Default Value</th>
                             <th>Sortable</th>
                             <th>Searchable</th>
+                            <th>Filter</th>
                             <th>Add</th>
                             <th>Edit</th>
                             <th>View</th>
                             <th>List</th>
-
+                            <th>Option</th>
                         </tr>
                         <tr *ngFor="let item of input.fields; let i = index">
                             <td><button *ngIf="item.custom !== false" type="button" class="btn btn-danger btn-xs"
@@ -98,12 +100,19 @@
                                     </tag-input-dropdown>
                                 </tag-input>
                             </td>
+                            <td>
+                                <ng-select bindValue="module_name" bindLabel="module_name" [items]="module_list"
+                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="item.lookup_module">
+                                </ng-select>
+                            </td>
                             <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
                                     [(ngModel)]="item.default" /></td>
                             <td><input type="checkbox" [ngModelOptions]="{standalone: true}"
                                     [(ngModel)]="item.sortable" /></td>
                             <td><input type="checkbox" [ngModelOptions]="{standalone: true}"
                                     [(ngModel)]="item.searchable" /></td>
+                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.filter" /></td>
                             <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.add" />
                             </td>
                             <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.edit" />
@@ -111,6 +120,9 @@
                             <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.view" />
                             </td>
                             <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.list" />
+                            </td>
+                            <td>
+                                <textarea [(ngModel)]="item.option"></textarea>
                             </td>
                         </tr>
                         <tr *ngIf="input.fields.length == 0">

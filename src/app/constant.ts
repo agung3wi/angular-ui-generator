@@ -1,5 +1,5 @@
 const constant = {
-    column_type_list : [
+    column_type_list: [
         'int',
         'bigint',
         'string',
@@ -9,7 +9,7 @@ const constant = {
         'date',
         'datetime'
     ],
-    field_list : [
+    field_list: [
         'none',
         'text',
         'textarea',
@@ -18,9 +18,20 @@ const constant = {
         'date',
         'dropdown',
         'radio',
-        'checkbox'
+        'checkbox',
+        'email',
+        'number',
+        'password',
+        'time',
+        'datetime',
+        'select',
+        'upload',
+        'submit',
+        'single-lookup',
+        'multiple-lookup'
+
     ],
-    validation_list : [
+    validation_list: [
         'required',
         'email',
         'integer',
@@ -28,24 +39,24 @@ const constant = {
         'boolean',
         'dateformat:YmdHis'
     ],
-    logical_list : [
-        {'key' : '='},
-        {'key' : "LIKE '%%'"},
-        {'key' : "ILIKE '%%'"},
-        {'key' : '!='},
-        {'key' : '>'},
-        {'key' : '<'},
-        {'key' : '>='},
-        {'key' : '<='},
+    logical_list: [
+        { 'key': '=' },
+        { 'key': "LIKE '%%'" },
+        { 'key': "ILIKE '%%'" },
+        { 'key': '!=' },
+        { 'key': '>' },
+        { 'key': '<' },
+        { 'key': '>=' },
+        { 'key': '<=' },
     ],
-    type_module_list : [
-        { key: 'table', value: 'In Table'},
-        { key: 'module', value: 'In Module'},
-        { key: 'list_module', value: 'List Module'},
+    type_module_list: [
+        { key: 'table', value: 'In Table' },
+        { key: 'module', value: 'In Module' },
+        { key: 'list_module', value: 'List Module' },
     ],
-    type_template_list : [
-        { key: 'generate', value: 'Generate File'},
-        { key: 'change', value: 'Add Content File'},
+    type_template_list: [
+        { key: 'generate', value: 'Generate File' },
+        { key: 'change', value: 'Add Content File' },
     ],
 }
 

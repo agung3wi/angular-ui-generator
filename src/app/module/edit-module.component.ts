@@ -16,6 +16,7 @@ export class EditModuleComponent {
   fields: any = [];
   bsModalRef: BsModalRef;
   table_list: any = [];
+  module_list: any = [];
   dropdownSettings = {
     singleSelection: false,
     idField: 'key',
@@ -55,6 +56,7 @@ export class EditModuleComponent {
 
     let index = this.route.snapshot.params.id;
     const module_list = await this.idb.getAll('module');
+    this.module_list = module_list;
     this.input = module_list[index];
 
     const table = this.table_list.find(x => x.table_name == this.input.table_name);

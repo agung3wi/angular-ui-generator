@@ -8,24 +8,24 @@ import { IdbService } from '../services/idb.service';
 
 export class TableComponent {
 
-  filter:any = {};
-  table_list:any = [];
+  filter: any = {};
+  table_list: any = [];
   constructor(
-    private idb:IdbService
+    private idb: IdbService
   ) {
     this.init();
   }
 
-    async init() {
-      this.table_list = await this.idb.getAll('table');
-      this.filter = {
-        page:1,
-        limit:20
-      }
-    } 
-
-    async remove(index) {
-      await this.idb.delete('table', index);
-      this.table_list = await this.idb.getAll('table');
+  async init() {
+    this.table_list = await this.idb.getAll('table');
+    this.filter = {
+      page: 1,
+      limit: 100
     }
+  }
+
+  async remove(index) {
+    await this.idb.delete('table', index);
+    this.table_list = await this.idb.getAll('table');
+  }
 }

@@ -17,6 +17,7 @@ export class AddModuleComponent {
   fields: any = [];
   bsModalRef: BsModalRef;
   table_list: any = [];
+  module_list: any = [];
   dropdownSettings = {
     singleSelection: false,
     idField: 'key',
@@ -47,6 +48,7 @@ export class AddModuleComponent {
     this.input.relation_fields = [];
     this.input.filters = [];
     this.table_list = await this.idb.getAll('table');
+    this.module_list = await this.idb.getAll('module');
   }
 
   addField() {
@@ -83,6 +85,7 @@ export class AddModuleComponent {
     }
     this.input.filters.push(filter);
   }
+
 
   async changeTable() {
     const table = await this.idb.find('table', this.input.table_name);

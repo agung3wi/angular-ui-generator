@@ -62,6 +62,7 @@ export class EditModuleComponent {
     const table = this.table_list.find(x => x.table_name == this.input.table_name);
     table.columns.forEach(item => {
       if (item.column_name == 'id') return;
+      if (item.column_name == 'active') return;
       let index = this.input.fields.findIndex(x => x.field_name == item.column_name);
       if (index == -1) {
         this.input.fields.push({

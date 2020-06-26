@@ -90,7 +90,11 @@ export class AddModuleComponent {
   async changeTable() {
     const table = await this.idb.find('table', this.input.table_name);
     this.input.module_name = table.module_name;
-    const listColumnNext = ["id", "active", "created_at", "updated_at", "created_by", "updated_by", "version"];
+    this.input.display_name = _.startCase(this.input.module_name.replace("_", " "))
+    const listColumnNext = ["id", "active", "created_at", "updated_at", "created_by", "updated_by", "version", "active"];
+    this.input.fields = [];
+    this.input.relation_fields = [];
+    this.input.filters = [];
     for (let item of table.columns) {
       if (listColumnNext.indexOf(item.column_name) > -1) continue;
       const display_name = _.startCase(item.column_name.replace("_", " "));
@@ -115,12 +119,14 @@ export class AddModuleComponent {
         custom: false,
         type: typeField,
         unique: item.unique,
-        valid_add: [],
-        valid_edit: [],
+        valid_add: [{ display: 'required', value: 'required' }],
+        valid_edit: [{ display: 'required', value: 'required' }],
         add: true,
         edit: true,
         view: true,
-        list: true
+        list: true,
+        searchable: true,
+        sortable: true,
       })
 
       if (item.type_relation === 'has_one') {

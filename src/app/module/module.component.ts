@@ -87,6 +87,14 @@ export class ModuleComponent {
     this.toastr.success("Success Copy Of module");
   }
 
+  async lock(item) {
+    if (!item.lock) {
+      item.lock = true;
+    } else {
+      item.lock = false;
+    }
+  }
+
 
 
   private dyanmicDownloadByHtmlTag(arg: {

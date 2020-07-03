@@ -3,8 +3,8 @@
         <h3 class="box-title">List Module</h3>
         <div class="box-tools pull-right">
             <a [routerLink]="['/add-module']" class="btn btn-primary">
-        Add Module
-      </a>
+                Add Module
+            </a>
         </div>
         <!-- /.box-tools -->
     </div>
@@ -20,12 +20,15 @@
                             <th>Primary Key</th>
                             <th>Default Modul</th>
                         </tr>
-                        <tr *ngFor="let item of module_list | paginate: { itemsPerPage: filter.limit, currentPage: filter.page }; let i=index">
+                        <tr
+                            *ngFor="let item of module_list | paginate: { itemsPerPage: filter.limit, currentPage: filter.page }; let i=index">
                             <td>
                                 <a class="btn btn-success" [routerLink]="['/edit-module/'+i]">Edit</a>
                                 <button class="btn btn-danger" (click)="remove(item.module_name)">Hapus</button>
                             </td>
-                            <td><label class="label label-primary">{{ item.lock === true ? 'Locked' : 'Unlocked' }}</label></td>
+                            <td><label class="label label-primary pointer"
+                                    (click)="lock(item)">{{ item.lock === true ? 'Locked' : 'Unlocked' }}</label>
+                            </td>
                             <td>{{ item.module_name }}</td>
                             <td>{{ item.primary_key }}</td>
                             <td>{{ item.module_name }}</td>
@@ -37,7 +40,8 @@
                 </table>
             </div>
             <div class="col-md-12 col-xs-12">
-                <pagination [(ngModel)]="filter.page" [rotate]="rotate" [maxSize]="5" [boundaryLinks]="true" [totalItems]="module_list.length" [itemsPerPage]="filter.limit"></pagination>
+                <pagination [(ngModel)]="filter.page" [rotate]="rotate" [maxSize]="5" [boundaryLinks]="true"
+                    [totalItems]="module_list.length" [itemsPerPage]="filter.limit"></pagination>
             </div>
         </div>
         <div class="row">

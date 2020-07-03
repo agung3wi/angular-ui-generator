@@ -108,8 +108,14 @@ export class EditModuleComponent {
     this.input.fields.splice(index, 1);
   }
 
+  removeFieldRelation(index) {
+    this.input.relation_fields.splice(index, 1);
+  }
+
   async save() {
     let input = this.input;
+    if (!Array.isArray(input.relation_fields))
+      input.relation_fields = [];
     await this.idb.set('module', input, input.module_name);
     this.router.navigate(['/module']);
 

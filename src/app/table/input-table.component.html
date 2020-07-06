@@ -26,6 +26,19 @@
                                 [(ngModel)]="input.module_name" />
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Policy</label>
+                        <div class="col-sm-10">
+                            <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.policy" />
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="input.policy">
+                        <label class="col-sm-2 control-label">Exclude Permission</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="task_exclude"
+                                [(ngModel)]="input.task_exclude" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>

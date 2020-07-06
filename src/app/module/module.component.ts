@@ -93,6 +93,9 @@ export class ModuleComponent {
     } else {
       item.lock = false;
     }
+
+    await this.idb.set('module', item, item.module_name);
+
   }
 
 

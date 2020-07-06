@@ -17,7 +17,6 @@
                             <th>Aksi</th>
                             <th>Status</th>
                             <th>Module Name</th>
-                            <th>Primary Key</th>
                             <th>Default Modul</th>
                         </tr>
                         <tr
@@ -26,11 +25,12 @@
                                 <a class="btn btn-success" [routerLink]="['/edit-module/'+i]">Edit</a>
                                 <button class="btn btn-danger" (click)="remove(item.module_name)">Hapus</button>
                             </td>
-                            <td><label class="label label-primary pointer"
-                                    (click)="lock(item)">{{ item.lock === true ? 'Locked' : 'Unlocked' }}</label>
+                            <td><label *ngIf="!item.lock" class="label label-primary pointer"
+                                    (click)="lock(item)">Unlocked</label>
+                                <label *ngIf="item.lock" class="label label-danger pointer"
+                                    (click)="lock(item)">Locked</label>
                             </td>
                             <td>{{ item.module_name }}</td>
-                            <td>{{ item.primary_key }}</td>
                             <td>{{ item.module_name }}</td>
                         </tr>
                         <tr *ngIf="module_list.length == 0">

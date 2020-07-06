@@ -8,6 +8,7 @@ import _ from 'lodash';
 
 @Component({
   templateUrl: './input-module.component.html',
+  styleUrls: ['./module.component.css']
 })
 export class AddModuleComponent {
 
@@ -17,6 +18,7 @@ export class AddModuleComponent {
   fields: any = [];
   bsModalRef: BsModalRef;
   table_list: any = [];
+  policies: any = [];
   module_list: any = [];
   dropdownSettings = {
     singleSelection: false,
@@ -48,6 +50,7 @@ export class AddModuleComponent {
     this.input.relation_fields = [];
     this.input.filters = [];
     this.table_list = await this.idb.getAll('table');
+    this.policies = this.table_list.filter(item => item.policy == true);
     this.module_list = await this.idb.getAll('module');
   }
 
@@ -67,6 +70,22 @@ export class AddModuleComponent {
 
   removeField(index) {
     this.input.fields.splice(index, 1);
+  }
+
+  removePolicy(index) {
+    this.input.policies.splice(index, 1);
+  }
+
+  removeFilter(index) {
+    this.input.filters.splice(index, 1);
+  }
+
+  addPolicy() {
+    const policy = {
+      table_name: '',
+      task_exclude: ''
+    }
+    this.input.policies.push(policy);
   }
 
   async save() {
@@ -95,6 +114,7 @@ export class AddModuleComponent {
     this.input.fields = [];
     this.input.relation_fields = [];
     this.input.filters = [];
+    this.input.policies = [];
     for (let item of table.columns) {
       if (listColumnNext.indexOf(item.column_name) > -1) continue;
       const display_name = _.startCase(item.column_name.replace("_", " "));

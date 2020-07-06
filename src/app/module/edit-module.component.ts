@@ -7,6 +7,7 @@ import { endTimeRange } from '@angular/core/src/profile/wtf_impl';
 
 @Component({
   templateUrl: './input-module.component.html',
+  styleUrls: ['./module.component.css']
 })
 export class EditModuleComponent {
 
@@ -16,6 +17,7 @@ export class EditModuleComponent {
   fields: any = [];
   bsModalRef: BsModalRef;
   table_list: any = [];
+  policies: any = [];
   module_list: any = [];
   dropdownSettings = {
     singleSelection: false,
@@ -53,11 +55,14 @@ export class EditModuleComponent {
   async init() {
 
     this.table_list = await this.idb.getAll('table');
+    this.policies = this.table_list.filter(item => item.policy == true);
 
     let index = this.route.snapshot.params.id;
     const module_list = await this.idb.getAll('module');
     this.module_list = module_list;
     this.input = module_list[index];
+    if (this.input.policies === undefined)
+      this.input.policies = []
 
     const table = this.table_list.find(x => x.table_name == this.input.table_name);
     table.columns.forEach(item => {
@@ -108,6 +113,11 @@ export class EditModuleComponent {
     this.input.fields.splice(index, 1);
   }
 
+  removeFilter(index) {
+    this.input.filters.splice(index, 1);
+  }
+
+
   removeFieldRelation(index) {
     this.input.relation_fields.splice(index, 1);
   }
@@ -129,6 +139,18 @@ export class EditModuleComponent {
       unique: false
     }
     this.input.filters.push(filter);
+  }
+
+  removePolicy(index) {
+    this.input.policies.splice(index, 1);
+  }
+
+  addPolicy() {
+    const policy = {
+      table_name: '',
+      task_exclude: ''
+    }
+    this.input.policies.push(policy);
   }
 
   async changeTable() {

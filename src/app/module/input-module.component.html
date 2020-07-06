@@ -34,6 +34,20 @@
                                 [(ngModel)]="input.display_name">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Policy</label>
+                        <div class="col-sm-10">
+                            <input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="input.policy" />
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="input.policy">
+                        <label class="col-sm-2 control-label">Policy Detail</label>
+                        <div class="col-sm-10">
+                            <ng-select [items]="policies" bindLabel="table_name" [ngModelOptions]="{standalone: true}"
+                                [(ngModel)]="input.policy_detail">
+                            </ng-select>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
@@ -64,13 +78,8 @@
                             <th>Validation Edit</th>
                             <th>Lookup Module</th>
                             <th>Default Value</th>
-                            <th>Sortable</th>
-                            <th>Searchable</th>
-                            <th>Filter</th>
-                            <th>Add</th>
-                            <th>Edit</th>
-                            <th>View</th>
-                            <th>List</th>
+                            <th>Sort | Src | Filter | Add | Edit | View | List</th>
+                            <th>Policy</th>
                             <th>Option</th>
                         </tr>
                         <tr *ngFor="let item of input.fields; let i = index">
@@ -108,18 +117,22 @@
                             <td><input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
                                     [(ngModel)]="item.default" /></td>
                             <td><input type="checkbox" [ngModelOptions]="{standalone: true}"
-                                    [(ngModel)]="item.sortable" /></td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}"
-                                    [(ngModel)]="item.searchable" /></td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}"
-                                    [(ngModel)]="item.filter" /></td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.add" />
+                                    [(ngModel)]="item.sortable" />&nbsp;<input type="checkbox"
+                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="item.searchable" />&nbsp;<input
+                                    type="checkbox" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.filter" />&nbsp;<input type="checkbox"
+                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="item.add" />
+                                &nbsp;<input type="checkbox" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.edit" />
+                                &nbsp;<input type="checkbox" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.view" />
+                                &nbsp;<input type="checkbox" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="item.list" />
                             </td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.edit" />
-                            </td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.view" />
-                            </td>
-                            <td><input type="checkbox" [ngModelOptions]="{standalone: true}" [(ngModel)]="item.list" />
+                            <td>
+                                <ng-select [items]="policies" bindLabel="table_name"
+                                    [ngModelOptions]="{standalone: true}" [(ngModel)]="item.policy_detail">
+                                </ng-select>
                             </td>
                             <td>
                                 <textarea [(ngModel)]="item.option"></textarea>
@@ -154,7 +167,7 @@
                         </tr>
                         <tr *ngFor="let item of input.relation_fields; let i = index">
                             <td><button type="button" class="btn btn-danger btn-xs"
-                                    (click)="removeFieldRelation(i)">`</button>
+                                    (click)="removeFieldRelation(i)">Delete</button>
                             </td>
                             <td>
                                 <input *ngIf="item.custom !== false" type="text" class="form-control"
@@ -213,7 +226,7 @@
                         </tr>
                         <tr *ngFor="let item of input.filters; let i = index">
                             <td><button *ngIf="item.custom !== false" type="button" class="btn btn-danger btn-xs"
-                                    (click)="removeField(i)">Delete</button></td>
+                                    (click)="removeFilter(i)">Delete</button></td>
                             <td>
                                 <input type="text" class="form-control" [ngModelOptions]="{standalone: true}"
                                     [(ngModel)]="item.field_name" />

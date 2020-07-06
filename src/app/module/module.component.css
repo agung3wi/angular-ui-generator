@@ -1,3 +1,4 @@
 .pointer {
     cursor:pointer
 }
+th, td { resize: horizontal; overflow: auto; }

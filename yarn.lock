@@ -118,6 +118,15 @@
   dependencies:
     tslib "^1.9.0"
 
+"@angular/cdk@^7.2.3":
+  version "7.3.7"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-7.3.7.tgz#ce1ad53ba04beb9c8e950acc5691ea0143753764"
+  integrity sha512-xbXxhHHKGkVuW6K7pzPmvpJXIwpl0ykBnvA2g+/7Sgy5Pd35wCC+UtHD9RYczDM/mkygNxMQtagyCErwFnDtQA==
+  dependencies:
+    tslib "^1.7.1"
+  optionalDependencies:
+    parse5 "^5.0.0"
+
 "@angular/cli@~7.3.0":
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-7.3.0.tgz#8f9301aa7a942385258b35bf86806267073fce17"
@@ -302,6 +311,13 @@
     esutils "^2.0.2"
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
+
+"@ng-select/ng-select@^2.20.5":
+  version "2.20.5"
+  resolved "https://registry.yarnpkg.com/@ng-select/ng-select/-/ng-select-2.20.5.tgz#bbf1b26b34bca576b13241453bdf92aa16de37a5"
+  integrity sha512-S9R3op3kd8XmAI99exPOTXwDcYOsDngIhkdsQuV1jq/rSVKdJZ6gQY1VWS5REjVnqbKbxbWAx4JA38bum/8Z7g==
+  dependencies:
+    tslib "^1.9.0"
 
 "@ngtools/json-schema@^1.1.0":
   version "1.1.0"
@@ -943,6 +959,13 @@ aws4@^1.8.0:
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.8.0.tgz#f0e003d9ca9e7f59c7a508945d7b2ef9a04a542f"
   integrity sha512-ReZxvNHIOv88FlT7rxcXIIC0fPt4KZqZbOlivyWtXLt8ESx84zd3kMC6iK5jVeS2qt+g7ftS7ye4fi06X5rtRQ==
 
+axios@^0.19.0:
+  version "0.19.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
+  integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
+  dependencies:
+    follow-redirects "1.5.10"
+
 babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-code-frame/-/babel-code-frame-6.26.0.tgz#63fd43f7dc1e3bb7ce35947db8fe369a3f58c74b"
@@ -1123,9 +1146,9 @@ bluebird@^3.3.0, bluebird@^3.5.1, bluebird@^3.5.3:
   integrity sha512-/qKPUQlaW1OyR51WeCPBvRnAlnZFUJkCSG5HzGnuIqhgyJtF+T94lFnn33eiazjRm2LAHVy2guNnaq48X9SJuw==
 
 bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
-  version "4.11.8"
-  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
-  integrity sha512-ItfYfPLkWHUjckQCk8xC+LwxgK8NYcXywGigJgSwOP8Y2iyWT4f2vsZnoOXTTbo+o5yXmIUJ4gn5538SO5S3gA==
+  version "4.11.9"
+  resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.9.tgz#26d556829458f9d1e81fc48952493d0ba3507828"
+  integrity sha512-E6QoYqCKZfgatHTdHzs1RRKP7ip4vvm+EyRUeE2RF0NblwVvb0p6jSVeNTOFxPn26QXN2o6SMfNxKp6kU8zQaw==
 
 body-parser@1.18.3, body-parser@^1.16.1:
   version "1.18.3"
@@ -2339,9 +2362,9 @@ electron-to-chromium@^1.3.103:
   integrity sha512-FyVLdiRZnLw2WE5ECtveN0JJ7klyiz/HMfKE1/Rjff3l7pe4vfkYtBlcCqTckvR8E7asjJGh0m9gRPR3Anp/UA==
 
 elliptic@^6.0.0:
-  version "6.4.1"
-  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.4.1.tgz#c2d0b7776911b86722c632c3c06c60f2f819939a"
-  integrity sha512-BsXLz5sqX8OHcsh7CqBMztyXARmGQ3LWPtGjJi6DiJHq5C/qvi9P3OqgswKSDftbu8+IoI/QDTAm2fFnQ9SZSQ==
+  version "6.5.3"
+  resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.5.3.tgz#cb59eb2efdaf73a0bd78ccd7015a62ad6e0f93d6"
+  integrity sha512-IMqzv5wNQf+E6aHeIqATs0tOLeOTwj1QKbRcS3jBbYkl5oLAserA8yJTT7/VyHUYG91PRmPyeQDObKLPpeS4dw==
   dependencies:
     bn.js "^4.4.0"
     brorand "^1.0.1"
@@ -2932,6 +2955,13 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.1"
     readable-stream "^2.0.4"
 
+follow-redirects@1.5.10:
+  version "1.5.10"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
+  integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
+  dependencies:
+    debug "=3.1.0"
+
 follow-redirects@^1.0.0:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.6.1.tgz#514973c44b5757368bad8bddfe52f81f015c94cb"
@@ -3505,6 +3535,11 @@ iconv-lite@^0.4.17, iconv-lite@^0.4.24, iconv-lite@^0.4.4, iconv-lite@~0.4.13:
   dependencies:
     safer-buffer ">= 2.1.2 < 3"
 
+idb@^4.0.4:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/idb/-/idb-4.0.5.tgz#23b930fbb0abce391e939c35b7b31a669e74041f"
+  integrity sha512-P+Fk9HT2h1DhXoE1YNK183SY+CRh2GHNh28de94sGwhe0bUA75JJeVJWt3SenE5p0BXK7maflIq29dl6UZHrFw==
+
 ieee754@^1.1.4:
   version "1.1.12"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.12.tgz#50bf24e5b9c8bb98af4964c941cdb0918da7b60b"
@@ -3594,15 +3629,20 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
-inherits@2, inherits@2.0.3, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.0, inherits@~2.0.1, inherits@~2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
-  integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
+inherits@2, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.0, inherits@~2.0.1, inherits@~2.0.3:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
+  integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
 
 inherits@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.1.tgz#b17d08d326b4423e568eff719f91b0b1cbdf69f1"
   integrity sha1-sX0I0ya0Qj5Wjv9xn5GwscvfafE=
+
+inherits@2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
+  integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
 ini@1.3.5, ini@^1.3.4, ini@~1.3.0:
   version "1.3.5"
@@ -4178,6 +4218,11 @@ js-base64@^2.1.8:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.5.1.tgz#1efa39ef2c5f7980bb1784ade4a8af2de3291121"
   integrity sha512-M7kLczedRMYX4L8Mdh4MzyAMM9O5osx+4FcOQuTvr3A9F2D9S5JXheN0ewNbrvK2UatkTRhL5ejGmGSjNMiZuw==
+
+js-file-download@^0.4.8:
+  version "0.4.12"
+  resolved "https://registry.yarnpkg.com/js-file-download/-/js-file-download-0.4.12.tgz#10c70ef362559a5b23cdbdc3bd6f399c3d91d821"
+  integrity sha512-rML+NkoD08p5Dllpjo0ffy4jRHeY6Zsapvr/W86N7E0yuzAO6qa5X9+xog6zQNlH102J7IXljNY2FtS6Lj3ucg==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
@@ -5003,6 +5048,13 @@ neo-async@^2.5.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.0.tgz#b9d15e4d71c6762908654b5183ed38b753340835"
   integrity sha512-MFh0d/Wa7vkKO3Y3LlacqAEeHK0mckVqzDieUKTT+KGxi+zIpeVsFxymkIiRpbpDziHc290Xr9A1O4Om7otoRA==
 
+ng-multiselect-dropdown@^0.2.3:
+  version "0.2.10"
+  resolved "https://registry.yarnpkg.com/ng-multiselect-dropdown/-/ng-multiselect-dropdown-0.2.10.tgz#464dfe34c09d23b1ba8eb851663d05f4614fd1aa"
+  integrity sha512-X7JlVgWMUmkabWxGNxlNmPmBi/dPAPTSc5lkBmeZbWBehL+yrfrHVAs2F27w5genI7u64CIR1AHMINy51/ueUg==
+  dependencies:
+    tslib "^1.9.0"
+
 ng-packagr@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/ng-packagr/-/ng-packagr-4.7.0.tgz#d04a93fd70e1895aa7a7ec3cf79c6ef6f7582327"
@@ -5036,6 +5088,60 @@ ng-packagr@^4.7.0:
     stylus "^0.54.5"
     uglify-js "^3.0.7"
     update-notifier "^2.3.0"
+
+ng2-material-dropdown@0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/ng2-material-dropdown/-/ng2-material-dropdown-0.11.0.tgz#27a402ef3cbdcaf6791ef4cfd4b257e31db7546f"
+  integrity sha512-wptBo09qKecY0QPTProAThrc4A3ajJTcHE9LTpCG5XZZUhXLBzhnGK8OW33TN8A+K/jqcs7OB74ppYJiqs3nhQ==
+  dependencies:
+    tslib "^1.9.0"
+
+ngx-bootstrap@^5.1.1:
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-5.6.1.tgz#c37643247441f9d421bca2cd7d7de1d0445e903f"
+  integrity sha512-8fDs3VaaWgKpupakPKS0QaUc+1E/JMBGJDxUUODjyIkLtFr1A8vH4cjXiV3AfrPvhK27GH0oyTPyKWKcCjEtVg==
+
+ngx-chips@^2.0.2:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ngx-chips/-/ngx-chips-2.1.0.tgz#aa299bcf40dc3e1f6288bf1d29e2fdfe9a132ed3"
+  integrity sha512-OQV4dTfD3nXm5d2mGKUSgwOtJOaMnZ4F+lwXOtd7DWRSUne0JQWwoZNHdOpuS6saBGhqCPDAwq6KxdR5XSgZUQ==
+  dependencies:
+    ng2-material-dropdown "0.11.0"
+    tslib "^1.9.0"
+
+ngx-clipboard@^12.2.1:
+  version "12.3.1"
+  resolved "https://registry.yarnpkg.com/ngx-clipboard/-/ngx-clipboard-12.3.1.tgz#565d73b946b10719242e532e748ad912cf8bc97a"
+  integrity sha512-qrUmkfYXEBQZQ4wNKno8yw5eOSxtdkzCPFFPil/XVVc93MNIKUme8aLbS3TEMB4PGsxopjbuTAzV7fptiSOIww==
+  dependencies:
+    ngx-window-token "^2.0.0"
+    tslib "^1.9.0"
+
+ngx-monaco-editor@^8.1.0:
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/ngx-monaco-editor/-/ngx-monaco-editor-8.1.1.tgz#5998e7f42b4f39c5959fe61200795cb4a8214286"
+  integrity sha512-SmUGFG5m2HHWybHD6qXdB1FrtC/XySSHm5O/E1cDGW7moIWzJGqiitCKLJdSh9D2hsoe8oBNEg74vYF1UGznsQ==
+  dependencies:
+    tslib "^1.9.0"
+
+ngx-pagination@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/ngx-pagination/-/ngx-pagination-4.1.0.tgz#05ccd30f54351e04beeaa92cbe5c42be5fd809c2"
+  integrity sha512-qdDuOkMMNFsM4r1Jyc+uJZr1edwLoIr8Uzh+TUPE5kDT1f29ZIKt92H8+yCijDMUwHJ65mX6SAfZvbtZEwIN4w==
+
+ngx-toastr@^10.0.4:
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/ngx-toastr/-/ngx-toastr-10.2.0.tgz#8a79008de0b1c013f90120a53e0355af5762e969"
+  integrity sha512-6ASr5bcvQmtNKb4D2VEsQjCXyROq6GwberBWO0bVt+xcBYPUea4aRTgX8in9apX9buaTafzG+h3HlnIraspoPg==
+  dependencies:
+    tslib "^1.9.0"
+
+ngx-window-token@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-window-token/-/ngx-window-token-2.0.1.tgz#8f91221af4116aa9f49bb3f7a6f1111639884fba"
+  integrity sha512-rvqdqJEfnWXQFU5fyfYt06E10tR/UtFOYdF3QebfcOh5VIJhnTKiprX8e4B9OrX7WEVFm9BT8uV72xXcEgsaKA==
+  dependencies:
+    tslib "^1.9.0"
 
 nice-try@^1.0.4:
   version "1.0.5"
@@ -5614,6 +5720,11 @@ parse5@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-4.0.0.tgz#6d78656e3da8d78b4ec0b906f7c08ef1dfe3f608"
   integrity sha512-VrZ7eOd3T1Fk4XWNXMgiGBK/z0MG48BWG2uQNU4I72fkQuKUTZpl+u9k+CxEG0twMVzSmXEEz12z5Fnw1jIQFA==
+
+parse5@^5.0.0:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
+  integrity sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==
 
 parseqs@0.0.5:
   version "0.0.5"

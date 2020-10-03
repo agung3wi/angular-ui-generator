@@ -11,6 +11,7 @@ const constant = {
     ],
     field_list: [
         'none',
+        'dropdown-list',
         'text',
         'textarea',
         'integer',

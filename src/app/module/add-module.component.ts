@@ -110,7 +110,7 @@ export class AddModuleComponent {
     const table = await this.idb.find('table', this.input.table_name);
     this.input.module_name = table.module_name;
     this.input.display_name = _.startCase(this.input.module_name.replace("_", " "))
-    const listColumnNext = ["id", "active", "created_at", "updated_at", "created_by", "updated_by", "version", "active"];
+    const listColumnNext = ["id", "created_at", "updated_at", "created_by", "updated_by", "version"];
     this.input.fields = [];
     this.input.relation_fields = [];
     this.input.filters = [];
@@ -123,10 +123,10 @@ export class AddModuleComponent {
         case 'text':
           typeField = 'textarea';
           break;
-        case 'int':
+        case 'bigint':
           typeField = 'dropdown';
           break;
-        case 'bigint':
+        case 'numeric':
           typeField = 'numeric';
           break;
 
@@ -144,8 +144,8 @@ export class AddModuleComponent {
         add: true,
         edit: true,
         view: true,
-        list: true,
-        searchable: true,
+        list: typeField == 'text',
+        searchable: typeField == 'text' || typeField == 'textarea',
         sortable: true,
       })
 
